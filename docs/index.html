@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EddyEye Suite</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body.lb-lock { overflow: hidden; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section id="home" class="hero anchor">
+  <div>
+    <h1>A set of tools for Eddy Covariance data monitoring and analytics</h1>
+    <p>EddyEye Suite unifies Map, Pulse and Hub into a set of tools that empowers scientists and technicians to track ecosystem health, gain insights from flux data, and act quickly when problems arise.</p>
+  </div>
+</section>
+
+<!-- Modules -->
+<section id="modules" class="section anchor">
+  <div class="container">
+    <div class="cards">
+      <div class="card">
+        <h3>EddyEye Map</h3>
+        <p>Interactive map aimed for technicians to monitor station and data-flow status across the network for quick issue detection and resolution.</p>
+        <a href="#map" class="more">Explore deeper →</a>
+      </div>
+
+      <div class="card">
+        <h3>EddyEye Pulse</h3>
+        <p>Dashboard made for technicians and scientists to rapidly detect outages, sensor interference, or logger failures through high-frequency data monitoring.</p>
+        <a href="#pulse" class="more">Explore deeper →</a>
+      </div>
+
+      <div class="card">
+        <h3>EddyEye Hub</h3>
+        <p>Dashboard designed for scientists to analyze ecosystem flux dynamics over a weekly monthly annual scale and perform concise data summarization.</p>
+        <a href="#hub" class="more">Explore deeper →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Map detail -->
+<section id="map" class="section anchor">
+  <div class="container">
+    <h2>EddyEye Map</h2>
+    <p class="lead">Interactive real-time status map showing operational health of Eddy Covariance stations and data flows.</p>
+    <div class="detail">
+      <div class="chips">
+        <span class="chip">Target Group: Technicians</span>
+        <span class="chip">Update Time: Every minute</span>
+        <span class="chip">Time Window: Realtime</span>
+        <span class="chip">Data Type: High-frequency; Low-frequency</span>
+      </div>
+
+      <div class="stack">
+        <article class="feature-card">
+          <span class="eyebrow">How it works</span>
+          <p class="feature-copy">
+            EddyEye Map keeps a live picture of station health and data flow across the network. 
+            It blends freshness, completeness, and lightweight QA hints into one easy status so you see what needs attention now. 
+            Markers cluster cleanly at scale, colors show overall state, and a click opens component-level details with last-seen times and recent activity. 
+            The view auto-updates and highlights regressions or recoveries, helping technicians spot issues early and coordinate fixes without digging through logs.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Demo Preview</h3>
+          <div class="shot-grid">
+            <a class="shot" href="assets/images/map-1.png" target="_blank" rel="noopener">
+              <img src="assets/images/map-1.png" alt="Example Map 1">
+            </a>
+            <a class="shot" href="assets/images/map-2.png" target="_blank" rel="noopener">
+              <img src="assets/images/map-2.png" alt="Example Map 2">
+            </a>
+              <a class="shot" href="assets/images/map-3.png" target="_blank" rel="noopener">
+              <img src="assets/images/map-3.png" alt="Example Map 3">
+            </a>
+              <a class="shot" href="assets/images/map-4.png" target="_blank" rel="noopener">
+              <img src="assets/images/map-4.png" alt="Example Map 4">
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pulse detail -->
+<section id="pulse" class="section anchor">
+  <div class="container">
+    <h2>EddyEye Pulse</h2>
+    <p class="lead">A powerful dashboard for intra-day monitoring and rapid issue detection.</p>
+
+    <div class="detail">
+      <div class="chips">
+        <span class="chip">Target Group: Technicians; Scientists</span>
+        <span class="chip">Update Time: Every 30 min</span>
+        <span class="chip">Time Window: 1 day</span>
+        <span class="chip">Data Type: High-Frequency Data</span>
+      </div>
+
+      <div class="stack">
+        <article class="pulse-card">
+          <span class="eyebrow">How it works</span>
+          <p class="pulse-copy">
+            EddyEye Pulse keeps continuous watch on high-frequency streams and adapts to each site.
+            It maintains a site-aware baseline across multiple signals and watches for shifts that matter.
+            When patterns change, a lightweight scoring step weighs what changed and why, so only meaningful events reach you.
+            Time is normalized to your local zone, so the “last seen” moment is always clear.
+            Alerts include the likely cause and a suggested next step.
+            A short, shareable daily brief keeps the whole team aligned.
+          </p>
+        </article>
+
+        <!-- Demo-->
+        <article class="pulse-card">
+          <h3>Demo Preview</h3>
+          <div class="preview">
+            <div class="ratio">
+              <iframe
+                src="assets/html/pulse.html"
+                title="EddyEye Pulse Demo"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+          <p class="small" style="margin-top:8px;">
+            <a href="assets/html/pulse.html" target="_blank" rel="noopener">Open in a new tab for the best experience</a>
+          </p>
+          <p class="small" style="margin-top:4px;">
+            <em>Note: Demo data are randomly generated and do not represent real measurements.</em>
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hub detail -->
+<section id="hub" class="section anchor">
+  <div class="container">
+    <h2>EddyEye Hub</h2>
+    <p class="lead">Dashboard for scientists with daily updates of high-frequency, low-frequency and EddyPro-based flux data across multiple time scales.</p>
+    
+    <div class="detail">
+      <div class="chips">
+        <span class="chip">Target Group: Scientists</span>
+        <span class="chip">Update Time: Daily</span>
+        <span class="chip">Time Window: Weekly; Monthly; Yearly</span>
+        <span class="chip">Data Type: High-frequency; Low-frequency; EddyPro&copy; estimates</span>
+      </div>
+
+      <div class="stack">
+        <article class="feature-card">
+          <span class="eyebrow">How it works</span>
+          <p class="feature-copy">
+            Every day EddyEye Hub downloads weekly, monthy and annual data from the SQL server, normalizes timestamps, and checks data completeness.
+            Quality filters reduce spikes and obvious artifacts, then the data are organized into analysis-ready 30-minute files.
+            Fluxes are pre-calculated using EddyPro&copy; software based on project metadata.
+            High-frequency data, low-frequency data, and pre-calculated fluxes are published in a clean, easy-to-understand, interactive web view.
+            Backups are created, and old buffer data are deleted to keep storage healthy.
+            The pipeline runs automatically, allows manual overrides, and tolerates station or server outages without stalling.
+          </p>
+        </article>
+
+        <!-- Demo-->
+        <article class="feature-card">
+          <span class="eyebrow">Demo Preview</span>
+          <div class="preview">
+            <div class="ratio">
+              <iframe
+                src="assets/html/hub.html"
+                title="EddyEye Hub Demo (shared)"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+          <p class="small" style="margin-top:8px;">
+            <a href="assets/html/hub.html" target="_blank" rel="noopener">Open in a new tab for the best experience</a>
+          </p>
+          <p class="small" style="margin-top:4px;">
+            <em>Note: Demo data are randomly generated and do not represent real measurements.</em>
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© EddyEye Suite</footer>
+
+<!-- ===== Lightbox markup ===== -->
+  <div id="lightbox" aria-hidden="true" aria-modal="true" role="dialog">
+    <div class="lb-backdrop"></div>
+    <figure class="lb-figure">
+      <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+      <img class="lb-img" alt="">
+      <button class="lb-btn lb-next" aria-label="Next">›</button>
+      <button class="lb-btn lb-close" aria-label="Close">×</button>
+    </figure>
+  </div>
+
+  <!-- Scrollspy -->
+  <script>
+    const links=[...document.querySelectorAll('.navlinks a')];
+    if(links.length){
+      const sections=links.map(a=>document.querySelector(a.getAttribute('href')));
+      const onScroll=()=>{
+        let idx=0, fromTop=window.scrollY+80;
+        sections.forEach((sec,i)=>{ if(sec && sec.offsetTop<=fromTop) idx=i; });
+        links.forEach(l=>l.classList.remove('active'));
+        links[idx]?.classList.add('active');
+      };
+      document.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+    }
+  </script>
+
+  <!-- Lightbox Script -->
+  <script>
+  (function(){
+    const shots = Array.from(document.querySelectorAll('.shot'));
+    if (!shots.length) return;
+
+    const lb = document.getElementById('lightbox');
+    const img = lb.querySelector('.lb-img');
+    const prevBtn = lb.querySelector('.lb-prev');
+    const nextBtn = lb.querySelector('.lb-next');
+    const closeBtn = lb.querySelector('.lb-close');
+    const backdrop = lb.querySelector('.lb-backdrop');
+
+    const items = shots.map(a => a.getAttribute('href') || a.querySelector('img')?.src);
+    let index = 0;
+
+    shots.forEach((a, i) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        openFromThumb(i, a.querySelector('img'));
+      });
+    });
+
+    function openFromThumb(i, thumb){
+      index = i;
+      const src = items[index];
+      const rect = thumb.getBoundingClientRect();
+      const vw = window.innerWidth, vh = window.innerHeight;
+
+      const maxW = Math.min(vw * 0.92, 1200);
+      const maxH = vh * 0.88;
+      const ratio = (thumb.naturalWidth && thumb.naturalHeight)
+        ? (thumb.naturalWidth / thumb.naturalHeight)
+        : (rect.width / rect.height);
+
+      let finalW = maxW, finalH = finalW / ratio;
+      if (finalH > maxH){ finalH = maxH; finalW = finalH * ratio; }
+
+      const thumbCx = rect.left + rect.width/2, thumbCy = rect.top + rect.height/2;
+      const viewCx = vw/2, viewCy = vh/2;
+      const scale = rect.width / finalW;
+      const tx = (thumbCx - viewCx) + 'px';
+      const ty = (thumbCy - viewCy) + 'px';
+
+      img.style.setProperty('--tx', tx);
+      img.style.setProperty('--ty', ty);
+      img.style.setProperty('--scale', scale.toString());
+      img.src = src;
+
+      document.body.classList.add('lb-lock');
+      lb.classList.add('lb-open');
+      lb.setAttribute('aria-hidden', 'false');
+    }
+
+    function close(){
+      img.style.opacity = '0';
+      img.style.transform = 'scale(0.98)';
+      setTimeout(()=> {
+        lb.classList.remove('lb-open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lb-lock');
+        img.removeAttribute('style');
+        img.src = '';
+      }, 180);
+    }
+
+    function show(delta){
+      index = (index + delta + items.length) % items.length;
+      img.src = items[index];
+    }
+
+    backdrop.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', ()=>show(-1));
+    nextBtn.addEventListener('click', ()=>show(1));
+    document.addEventListener('keydown', (e)=>{
+      if (!lb.classList.contains('lb-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(-1);
+      if (e.key === 'ArrowRight') show(1);
+    });
+  })();
+  </script>
+</body>
+</html>
