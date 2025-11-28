@@ -11,34 +11,122 @@
 </head>
 <body>
 
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <span class="brand-text">EddyEye Suite</span>
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#modules" class="nav-link">Modules</a>
+      <a href="#map" class="nav-link">Map</a>
+      <a href="#pulse" class="nav-link">Pulse</a>
+      <a href="#hub" class="nav-link">Hub</a>
+      <a href="#elog" class="nav-link">ELog</a>
+    </div>
+    <div class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
 <!-- Hero -->
 <section id="home" class="hero anchor">
-  <div>
-    <h1>A set of tools for Eddy Covariance data monitoring and analytics</h1>
-    <p>EddyEye Suite unifies Map, Pulse and Hub into a set of tools that empowers scientists and technicians to track ecosystem health, gain insights from flux data, and act quickly when problems arise.</p>
+  <div class="hero-background">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Advanced Tools for 
+      <span class="gradient-text">Eddy Covariance</span>
+      Data Analytics
+    </h1>
+    <p class="hero-description">
+      EddyEye Suite unifies Map, Pulse, Hub and ELog into a comprehensive ecosystem that empowers scientists and technicians to track ecosystem health, gain insights from flux data, respond quickly when issues arise, and maintain systematic documentation of field operations.
+    </p>
   </div>
 </section>
+
 
 <!-- Modules -->
 <section id="modules" class="section anchor">
   <div class="container">
-    <div class="cards">
-      <div class="card">
+    <div class="section-header">
+      <h2 class="section-title">Our Modules</h2>
+      <p class="section-subtitle">Four powerful tools for comprehensive data control, analysis and documentation</p>
+    </div>
+    <div class="cards-grid">
+      <div class="module-card glass-card map-card">
+        <div class="card-header">
+          <div class="card-badge">For Technicians</div>
+        </div>
         <h3>EddyEye Map</h3>
-        <p>Interactive map aimed for technicians to monitor station and data-flow status across the network for quick issue detection and resolution.</p>
-        <a href="#map" class="more">Explore deeper →</a>
+        <p>Monitoring and visualization system designed to support researchers and technical teams working with distributed environmental measurement networks.</p>
+        <div class="card-features">
+          <span class="feature-tag">Real-time Updates</span>
+          <span class="feature-tag">Network Overview</span>
+          <span class="feature-tag">Issue Detection</span>
+        </div>
+        <a href="#map" class="card-link glass-btn">
+          <span>Explore Map</span>
+          <span class="link-icon">→</span>
+        </a>
       </div>
 
-      <div class="card">
+      <div class="module-card glass-card pulse-card">
+        <div class="card-header">
+          <div class="card-badge">For Scientists & Technicians</div>
+        </div>
         <h3>EddyEye Pulse</h3>
-        <p>Dashboard made for technicians and scientists to rapidly detect outages, sensor interference, or logger failures through high-frequency data monitoring.</p>
-        <a href="#pulse" class="more">Explore deeper →</a>
+        <p>Advanced dashboard for rapid detection of outages, sensor interference, or logger failures through comprehensive high-frequency data monitoring.</p>
+        <div class="card-features">
+          <span class="feature-tag">High-frequency Data</span>
+          <span class="feature-tag">Smart Alerts</span>
+          <span class="feature-tag">Rapid Detection</span>
+        </div>
+        <a href="#pulse" class="card-link glass-btn">
+          <span>Explore Pulse</span>
+          <span class="link-icon">→</span>
+        </a>
       </div>
 
-      <div class="card">
+      <div class="module-card glass-card hub-card">
+        <div class="card-header">
+          <div class="card-badge">For Scientists</div>
+        </div>
         <h3>EddyEye Hub</h3>
-        <p>Dashboard designed for scientists to analyze ecosystem flux dynamics over a weekly monthly annual scale and perform concise data summarization.</p>
-        <a href="#hub" class="more">Explore deeper →</a>
+        <p>Comprehensive dashboard for analyzing ecosystem flux dynamics across weekly, monthly, and annual scales with advanced data summarization capabilities.</p>
+        <div class="card-features">
+          <span class="feature-tag">Long-term Analysis</span>
+          <span class="feature-tag">EddyPro© Integration</span>
+          <span class="feature-tag">Data Summarization</span>
+        </div>
+        <a href="#hub" class="card-link glass-btn">
+          <span>Explore Hub</span>
+          <span class="link-icon">→</span>
+        </a>
+      </div>
+
+      <div class="module-card glass-card elog-card">
+        <div class="card-header">
+          <div class="card-badge">For Research Teams</div>
+        </div>
+        <h3>EddyEye ELog</h3>
+        <p>Specialized documentation system that supports researchers and engineers in maintaining systematic records of field observations and equipment performance across distributed monitoring networks.</p>
+        <div class="card-features">
+          <span class="feature-tag">Field Documentation</span>
+          <span class="feature-tag">Incident Reports</span>
+          <span class="feature-tag">Team Coordination</span>
+        </div>
+        <a href="#elog" class="card-link glass-btn">
+          <span>Explore ELog</span>
+          <span class="link-icon">→</span>
+        </a>
       </div>
     </div>
   </div>
@@ -47,44 +135,77 @@
 <!-- Map detail -->
 <section id="map" class="section anchor">
   <div class="container">
-    <h2>EddyEye Map</h2>
-    <p class="lead">Interactive real-time status map showing operational health of Eddy Covariance stations and data flows.</p>
-    <div class="detail">
-      <div class="chips">
-        <span class="chip">Target Group: Technicians</span>
-        <span class="chip">Update Time: Every minute</span>
-        <span class="chip">Time Window: Realtime</span>
-        <span class="chip">Data Type: High-frequency; Low-frequency</span>
+    <div class="detail-header">
+      <h2>EddyEye Map</h2>
+      <p class="lead">Monitoring and visualization system designed to support researchers and technical teams working with distributed environmental measurement networks.</p>
+    </div>
+    
+    <div class="detail-content">
+      <div class="detail-info glass-card">
+        <div class="info-header">
+          <h4>System Specifications</h4>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Target Users</div>
+              <div class="info-value">Field Technicians</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Update Frequency</div>
+              <div class="info-value">Every Minute</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Time Window</div>
+              <div class="info-value">Real-time</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Data Types</div>
+              <div class="info-value">High & Low Frequency</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-description">
+          <h4>How It Works</h4>
+          <p>
+            EddyEye Map enables continuous oversight of field stations, providing real-time status information and facilitating rapid identification of operational issues across geographically dispersed monitoring infrastructure. It assists specialists in maintaining data quality standards by automatically assessing measurement completeness and detecting anomalies in observational records.
+          </p>
+          <p>
+            The platform offers intuitive visual representations that help researchers quickly understand the operational state of their monitoring network and identify stations requiring attention. By consolidating status information and diagnostic details in a centralized interface, EddyEye Map reduces the time and effort required for routine monitoring tasks, allowing scientists to focus on data analysis and research objectives rather than manual system checks.
+          </p>
+        </div>
       </div>
 
-      <div class="stack">
-        <article class="feature-card">
-          <span class="eyebrow">How it works</span>
-          <p class="feature-copy">
-            EddyEye Map keeps a live picture of station health and data flow across the network. 
-            It blends freshness, completeness, and lightweight QA hints into one easy status so you see what needs attention now. 
-            Markers cluster cleanly at scale, colors show overall state, and a click opens component-level details with last-seen times and recent activity. 
-            The view auto-updates and highlights regressions or recoveries, helping technicians spot issues early and coordinate fixes without digging through logs.
-          </p>
-        </article>
-
-        <article class="feature-card">
-          <h3>Demo Preview</h3>
-          <div class="shot-grid">
-            <a class="shot" href="assets/images/map-1.png" target="_blank" rel="noopener">
-              <img src="assets/images/map-1.png" alt="Example Map 1">
-            </a>
-            <a class="shot" href="assets/images/map-2.png" target="_blank" rel="noopener">
-              <img src="assets/images/map-2.png" alt="Example Map 2">
-            </a>
-              <a class="shot" href="assets/images/map-3.png" target="_blank" rel="noopener">
-              <img src="assets/images/map-3.png" alt="Example Map 3">
-            </a>
-              <a class="shot" href="assets/images/map-4.png" target="_blank" rel="noopener">
-              <img src="assets/images/map-4.png" alt="Example Map 4">
+      <div class="detail-visual glass-card">
+        <div class="visual-header">
+          <h4>Interactive Dashboard Demo</h4>
+          <p>Experience the full monitoring interface</p>
+        </div>
+        <div class="demo-container">
+          <div class="iframe-wrapper">
+            <iframe
+              src="assets/html/EddyEye_Map_Demo.html"
+              title="EddyEye Map Interactive Demo"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="demo-actions">
+            <a href="assets/html/EddyEye_Map_Demo.html" target="_blank" rel="noopener" class="demo-link glass-btn">
+              <span>Open Full Demo</span>
+              <span class="link-icon">↗</span>
             </a>
           </div>
-        </article>
+        </div>
+        <div class="demo-note">
+          <p><em>Note: Demo data are randomly generated for demonstration purposes and do not represent actual field measurements.</em></p>
+        </div>
       </div>
     </div>
   </div>
@@ -93,49 +214,81 @@
 <!-- Pulse detail -->
 <section id="pulse" class="section anchor">
   <div class="container">
-    <h2>EddyEye Pulse</h2>
-    <p class="lead">A powerful dashboard for intra-day monitoring and rapid issue detection.</p>
+    <div class="detail-header">
+      <h2>EddyEye Pulse</h2>
+      <p class="lead">Intelligent real-time detection system for rapid identification and resolution of operational issues across your monitoring network.</p>
+    </div>
 
-    <div class="detail">
-      <div class="chips">
-        <span class="chip">Target Group: Technicians; Scientists</span>
-        <span class="chip">Update Time: Every 30 min</span>
-        <span class="chip">Time Window: 1 day</span>
-        <span class="chip">Data Type: High-Frequency Data</span>
-      </div>
-
-      <div class="stack">
-        <article class="pulse-card">
-          <span class="eyebrow">How it works</span>
-          <p class="pulse-copy">
-            EddyEye Pulse keeps continuous watch on high-frequency streams and adapts to each site.
-            It maintains a site-aware baseline across multiple signals and watches for shifts that matter.
-            When patterns change, a lightweight scoring step weighs what changed and why, so only meaningful events reach you.
-            Time is normalized to your local zone, so the “last seen” moment is always clear.
-            Alerts include the likely cause and a suggested next step.
-            A short, shareable daily brief keeps the whole team aligned.
-          </p>
-        </article>
-
-        <!-- Demo-->
-        <article class="pulse-card">
-          <h3>Demo Preview</h3>
-          <div class="preview">
-            <div class="ratio">
-              <iframe
-                src="assets/html/pulse.html"
-                title="EddyEye Pulse Demo"
-                loading="lazy"
-              ></iframe>
+    <div class="detail-content">
+      <div class="detail-info glass-card">
+        <div class="info-header">
+          <h4>System Specifications</h4>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Target Users</div>
+              <div class="info-value">Technicians & Scientists</div>
             </div>
           </div>
-          <p class="small" style="margin-top:8px;">
-            <a href="assets/html/pulse.html" target="_blank" rel="noopener">Open in a new tab for the best experience</a>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Update Frequency</div>
+              <div class="info-value">Every 30 Minutes</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Time Window</div>
+              <div class="info-value">24 Hours</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Data Types</div>
+              <div class="info-value">High-Frequency Streams</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-description">
+          <h4>Intelligent Monitoring System</h4>
+          <p>
+            EddyEye Pulse provides continuous surveillance of high-frequency data streams with adaptive site-specific intelligence. 
+            The system maintains dynamic baselines across multiple signal types and employs advanced pattern recognition to identify 
+            meaningful deviations from normal operational parameters.
           </p>
-          <p class="small" style="margin-top:4px;">
-            <em>Note: Demo data are randomly generated and do not represent real measurements.</em>
+          <p>
+            When anomalies are detected, our sophisticated scoring algorithm evaluates the significance and potential impact, 
+            ensuring only actionable alerts reach your team. All timestamps are automatically normalized to local time zones, 
+            and each alert includes diagnostic information with recommended remediation steps.
           </p>
-        </article>
+        </div>
+      </div>
+
+      <div class="detail-visual glass-card">
+        <div class="visual-header">
+          <h4>Interactive Dashboard Demo</h4>
+          <p>Experience the full monitoring interface</p>
+        </div>
+        <div class="demo-container">
+          <div class="iframe-wrapper">
+            <iframe
+              src="assets/html/pulse.html"
+              title="EddyEye Pulse Interactive Demo"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="demo-actions">
+            <a href="assets/html/pulse.html" target="_blank" rel="noopener" class="demo-link glass-btn">
+              <span>Open Full Demo</span>
+              <span class="link-icon">↗</span>
+            </a>
+          </div>
+        </div>
+        <div class="demo-note">
+          <p><em>Note: Demo data are randomly generated for demonstration purposes and do not represent actual field measurements.</em></p>
+        </div>
       </div>
     </div>
   </div>
@@ -144,55 +297,190 @@
 <!-- Hub detail -->
 <section id="hub" class="section anchor">
   <div class="container">
-    <h2>EddyEye Hub</h2>
-    <p class="lead">Dashboard for scientists with daily updates of high-frequency, low-frequency and EddyPro-based flux data across multiple time scales.</p>
+    <div class="detail-header">
+      <h2>EddyEye Hub</h2>
+      <p class="lead">Advanced dashboard delivering daily updates of multi-frequency flux data with EddyPro© integration across weekly, monthly, and annual time scales for comprehensive ecosystem analysis.</p>
+    </div>
     
-    <div class="detail">
-      <div class="chips">
-        <span class="chip">Target Group: Scientists</span>
-        <span class="chip">Update Time: Daily</span>
-        <span class="chip">Time Window: Weekly; Monthly; Yearly</span>
-        <span class="chip">Data Type: High-frequency; Low-frequency; EddyPro&copy; estimates</span>
-      </div>
-
-      <div class="stack">
-        <article class="feature-card">
-          <span class="eyebrow">How it works</span>
-          <p class="feature-copy">
-            Every day EddyEye Hub downloads weekly, monthy and annual data from the SQL server, normalizes timestamps, and checks data completeness.
-            Quality filters reduce spikes and obvious artifacts, then the data are organized into analysis-ready 30-minute files.
-            Fluxes are pre-calculated using EddyPro&copy; software based on project metadata.
-            High-frequency data, low-frequency data, and pre-calculated fluxes are published in a clean, easy-to-understand, interactive web view.
-            Backups are created, and old buffer data are deleted to keep storage healthy.
-            The pipeline runs automatically, allows manual overrides, and tolerates station or server outages without stalling.
-          </p>
-        </article>
-
-        <!-- Demo-->
-        <article class="feature-card">
-          <span class="eyebrow">Demo Preview</span>
-          <div class="preview">
-            <div class="ratio">
-              <iframe
-                src="assets/html/hub.html"
-                title="EddyEye Hub Demo (shared)"
-                loading="lazy"
-              ></iframe>
+    <div class="detail-content">
+      <div class="detail-info glass-card">
+        <div class="info-header">
+          <h4>System Specifications</h4>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Target Users</div>
+              <div class="info-value">Research Scientists</div>
             </div>
           </div>
-          <p class="small" style="margin-top:8px;">
-            <a href="assets/html/hub.html" target="_blank" rel="noopener">Open in a new tab for the best experience</a>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Update Frequency</div>
+              <div class="info-value">Daily Processing</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Time Scales</div>
+              <div class="info-value">Weekly, Monthly, Annual</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-content">
+              <div class="info-label">Data Integration</div>
+              <div class="info-value">Multi-frequency & EddyPro©</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-description">
+          <h4>Automated Data Pipeline</h4>
+          <p>
+            EddyEye Hub operates a sophisticated daily processing pipeline that automatically retrieves multi-temporal datasets 
+            from SQL servers, performs comprehensive timestamp normalization, and conducts thorough data completeness validation. 
+            Advanced quality control algorithms filter anomalous spikes and artifacts while preserving data integrity.
           </p>
-          <p class="small" style="margin-top:4px;">
-            <em>Note: Demo data are randomly generated and do not represent real measurements.</em>
+          <p>
+            The system generates analysis-ready 30-minute datasets and integrates seamlessly with EddyPro© software for 
+            automated flux calculations based on project-specific metadata. All processed data is presented through an 
+            intuitive, interactive web interface designed for scientific analysis workflows.
           </p>
-        </article>
+        </div>
+      </div>
+
+      <div class="detail-visual glass-card">
+        <div class="visual-header">
+          <h4>Scientific Dashboard Demo</h4>
+          <p>Explore comprehensive data analysis tools</p>
+        </div>
+        <div class="demo-container">
+          <div class="iframe-wrapper">
+            <iframe
+              src="assets/html/hub.html"
+              title="EddyEye Hub Scientific Dashboard Demo"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="demo-actions">
+            <a href="assets/html/hub.html" target="_blank" rel="noopener" class="demo-link glass-btn">
+              <span>Open Full Demo</span>
+              <span class="link-icon">↗</span>
+            </a>
+          </div>
+        </div>
+        <div class="demo-note">
+          <p><em>Note: Demo data are randomly generated for demonstration purposes and do not represent actual scientific measurements.</em></p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>© EddyEye Suite</footer>
+<!-- ELog detail -->
+<section id="elog" class="section anchor">
+  <div class="container">
+    <div class="detail-header">
+      <h2>EddyEye ELog</h2>
+      <p class="lead">Specialized documentation system that supports researchers and engineers in maintaining systematic records of field observations and equipment performance across distributed monitoring networks.</p>
+    </div>
+    
+    <div class="detail-content">
+      <div class="detail-info glass-card">
+        <div class="info-header">
+          <h4>System Specifications</h4>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">👥</div>
+            <div class="info-content">
+              <div class="info-label">Target Users</div>
+              <div class="info-value">Research Teams & Engineers</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🔄</div>
+            <div class="info-content">
+              <div class="info-label">Update Frequency</div>
+              <div class="info-value">Real-time Logging</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">⏱️</div>
+            <div class="info-content">
+              <div class="info-label">Time Scope</div>
+              <div class="info-value">Long-term Records</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📊</div>
+            <div class="info-content">
+              <div class="info-label">Documentation Types</div>
+              <div class="info-value">Incidents & Maintenance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-description">
+          <h4>Comprehensive Documentation System</h4>
+          <p>
+            EddyEye ELog assists scientific teams in organizing incident reports, documenting maintenance procedures, and coordinating scheduled activities related to environmental or technical monitoring projects. Research groups benefit from enhanced traceability of field operations, improved collaboration between team members, and standardized documentation practices that support data quality assurance.
+          </p>
+          <p>
+            The system facilitates communication workflows that help specialists stay informed about equipment status and operational requirements across multiple research sites. By providing structured approaches to record-keeping and task coordination, EddyEye ELog enables research teams to maintain more consistent data collection protocols and equipment reliability standards. This contributes to improved research data integrity, better resource allocation for field operations, and enhanced reproducibility of long-term monitoring studies.
+          </p>
+        </div>
+      </div>
+
+      <div class="detail-visual glass-card">
+        <div class="visual-header">
+          <h4>Documentation Interface</h4>
+          <p>Streamlined field record management</p>
+        </div>
+        <div class="demo-container">
+          <div class="iframe-wrapper">
+            <iframe
+              src="assets/html/EddyEye_ELog_Demo.html"
+              title="EddyEye ELog Interactive Demo"
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="demo-actions">
+            <a href="assets/html/EddyEye_ELog_Demo.html" target="_blank" rel="noopener" class="demo-link glass-btn">
+              <span>Open Full Demo</span>
+              <span class="link-icon">↗</span>
+            </a>
+          </div>
+        </div>
+        <div class="demo-note">
+          <p><em>Note: Demo data are randomly generated for demonstration purposes and do not represent actual field records.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-glass">
+  <div class="container">
+    <div class="footer-content glass-card">
+      <div class="footer-brand">
+        <span class="brand-text">EddyEye Suite</span>
+      </div>
+      <div class="footer-links">
+        <a href="#home" class="footer-link">Home</a>
+        <a href="#modules" class="footer-link">Modules</a>
+        <a href="#map" class="footer-link">Map</a>
+        <a href="#pulse" class="footer-link">Pulse</a>
+        <a href="#hub" class="footer-link">Hub</a>
+        <a href="#elog" class="footer-link">ELog</a>
+      </div>
+      <div class="footer-text">
+        EddyEye Suite. 2025. Developed by <a href="https://www.researchgate.net/profile/Svyatoslav-Rogozin?ev=hdr_xprf" target="_blank" rel="noopener">Svyatoslav Rogozin</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- ===== Lightbox markup ===== -->
   <div id="lightbox" aria-hidden="true" aria-modal="true" role="dialog">

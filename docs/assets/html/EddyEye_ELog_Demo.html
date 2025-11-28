@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EddyEye ELog - Demo Preview</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: white;
+      font-size: 42px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .header p {
+      color: rgba(255,255,255,0.9);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Navigation */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-tab {
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-tab:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .nav-tab.active {
+      background: white;
+      color: #667eea;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+
+    /* Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .data-table th {
+      background: #f8f9fa;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      color: #666;
+      text-transform: uppercase;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .data-table tr:hover td {
+      background: #f8f9fa;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-success { background: #e8f5e9; color: #388e3c; }
+    .badge-warning { background: #fff3e0; color: #f57c00; }
+    .badge-info { background: #e3f2fd; color: #1976d2; }
+    .badge-purple { background: #f3e5f5; color: #7b1fa2; }
+    .badge-hot { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); color: white; }
+
+    /* Action Buttons */
+    .action-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 3px;
+    }
+
+    .action-btn-complete { background: #e8f5e9; color: #388e3c; }
+    .action-btn-view { background: #e3f2fd; color: #1976d2; }
+    .action-btn-edit { background: #fff3e0; color: #f57c00; }
+
+    /* Calendar */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .calendar-header {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #667eea;
+      padding: 8px 4px;
+      background: #f8f9fa;
+      border-radius: 6px;
+    }
+
+    .calendar-day {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 8px;
+      min-height: 65px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .calendar-day.today {
+      border: 2px solid #667eea;
+      background: #f0f4ff;
+    }
+
+    .calendar-day.weekend {
+      opacity: 0.5;
+    }
+
+    .calendar-day-number {
+      font-size: 12px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .calendar-task {
+      font-size: 9px;
+      padding: 3px 6px;
+      border-radius: 4px;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .task-maintenance { background: #e3f2fd; color: #1976d2; }
+    .task-inspection { background: #e8f5e9; color: #388e3c; }
+    .task-repair { background: #fff3e0; color: #f57c00; }
+    .task-done { opacity: 0.6; text-decoration: line-through; }
+
+    /* Tech Stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: white;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .calendar-grid {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>EddyEye ELog</h1>
+      <p>A documentation platform for research teams managing field observations and equipment maintenance across monitoring networks.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('overview')">🏠 Overview</button>
+      <button class="nav-tab" onclick="showSection('issues')">📋 Observations</button>
+      <button class="nav-tab" onclick="showSection('worklogs')">🔧 Activity Journal</button>
+      <button class="nav-tab" onclick="showSection('tasks')">📅 Planning</button>
+    </div>
+
+    <!-- Overview Section -->
+    <div id="overview" class="section active">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3 class="feature-title">Observation Records</h3>
+          <p class="feature-desc">Document equipment anomalies and site conditions with assignment tracking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3 class="feature-title">Activity Documentation</h3>
+          <p class="feature-desc">Structured records of field work, maintenance visits, and inspections.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3 class="feature-title">Scheduled Activities</h3>
+          <p class="feature-desc">Plan recurring field visits with flexible scheduling patterns.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📧</div>
+          <h3 class="feature-title">Team Communication</h3>
+          <p class="feature-desc">Automated notifications for status updates and activities.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Reporting & Analysis</h3>
+          <p class="feature-desc">Summary statistics and historical record exports.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Team Coordination</h3>
+          <p class="feature-desc">Role-based access for researchers and technicians.</p>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <div class="tech-item">🌐 Web-Based</div>
+        <div class="tech-item">💾 Self-Hosted</div>
+        <div class="tech-item">📧 Email Alerts</div>
+        <div class="tech-item">📊 Data Export</div>
+        <div class="tech-item">🔒 Secure</div>
+        <div class="tech-item">📱 Responsive</div>
+      </div>
+    </div>
+
+    <!-- Issues Section -->
+    <div id="issues" class="section">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📋 Observation Records</span>
+        </div>
+        <div class="card-content">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">47</div>
+              <div class="stat-label">Total</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">8</div>
+              <div class="stat-label">Open</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">39</div>
+              <div class="stat-label">Resolved</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Critical</div>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Station</th>
+                <th>Status</th>
+                <th>Assigned</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sensor malfunction</strong> <span class="badge badge-hot">🔥 HOT</span></td>
+                <td>Forest Station 1</td>
+                <td><span class="badge badge-warning">Open</span></td>
+                <td>John, Robert</td>
+                <td>
+                  <button class="action-btn action-btn-complete">✅</button>
+                  <button class="action-btn action-btn-view">👁</button>
+                  <button class="action-btn action-btn-edit">✏️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Connection drops</strong> <span class="badge badge-hot">🔥 HOT</span></td>
+                <td>Lake Station 2</td>
+                <td><span class="badge badge-warning">Open</span></td>
+                <td>Michael</td>
+                <td>
+                  <button class="action-btn action-btn-complete">✅</button>
+                  <button class="action-btn action-btn-view">👁</button>
+                  <button class="action-btn action-btn-edit">✏️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Panel cleaning</strong></td>
+                <td>Forest Station 4</td>
+                <td><span class="badge badge-success">Resolved</span></td>
+                <td>John</td>
+                <td>
+                  <button class="action-btn action-btn-view">👁</button>
+                  <button class="action-btn action-btn-edit">✏️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Bearing noise</strong></td>
+                <td>Mountain Station 5</td>
+                <td><span class="badge badge-success">Resolved</span></td>
+                <td>Robert</td>
+                <td>
+                  <button class="action-btn action-btn-view">👁</button>
+                  <button class="action-btn action-btn-edit">✏️</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Worklogs Section -->
+    <div id="worklogs" class="section">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">🔧 Activity Journal</span>
+        </div>
+        <div class="card-content">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">156</div>
+              <div class="stat-label">Done</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">12</div>
+              <div class="stat-label">In Progress</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Blocked</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">28</div>
+              <div class="stat-label">Comments</div>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Station</th>
+                <th>Status</th>
+                <th>Duration</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Calibration check</strong> <span class="badge badge-hot">🔥 HOT</span></td>
+                <td><span class="badge badge-info">Maintenance</span></td>
+                <td>Forest Station 1</td>
+                <td><span class="badge badge-warning">In Progress</span></td>
+                <td>2h 15m</td>
+                <td>
+                  <button class="action-btn action-btn-complete">✅</button>
+                  <button class="action-btn action-btn-view">👁</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Sensor replacement</strong></td>
+                <td><span class="badge badge-purple">Replacement</span></td>
+                <td>Lake Station 3</td>
+                <td><span class="badge badge-success">Done</span></td>
+                <td>4h 30m</td>
+                <td>
+                  <button class="action-btn action-btn-view">👁</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Seal repair</strong></td>
+                <td><span class="badge badge-warning">Repair</span></td>
+                <td>Forest Station 4</td>
+                <td><span class="badge badge-success">Done</span></td>
+                <td>1h 45m</td>
+                <td>
+                  <button class="action-btn action-btn-view">👁</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Winter inspection</strong></td>
+                <td><span class="badge badge-success">Inspection</span></td>
+                <td>Valley Station 6</td>
+                <td><span class="badge badge-warning">In Progress</span></td>
+                <td>3h 00m</td>
+                <td>
+                  <button class="action-btn action-btn-complete">✅</button>
+                  <button class="action-btn action-btn-view">👁</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasks Section -->
+    <div id="tasks" class="section">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📅 Activity Planning - November 2025</span>
+        </div>
+        <div class="card-content">
+          <div class="calendar-grid">
+            <div class="calendar-header">Mon</div>
+            <div class="calendar-header">Tue</div>
+            <div class="calendar-header">Wed</div>
+            <div class="calendar-header">Thu</div>
+            <div class="calendar-header">Fri</div>
+            <div class="calendar-header">Sat</div>
+            <div class="calendar-header">Sun</div>
+            
+            <div class="calendar-day">
+              <div class="calendar-day-number">24</div>
+              <div class="calendar-task task-maintenance">🔧 Calibration</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">25</div>
+              <div class="calendar-task task-inspection task-done">✅ Inspection</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">26</div>
+              <div class="calendar-task task-maintenance task-done">✅ Battery</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">27</div>
+            </div>
+            <div class="calendar-day today">
+              <div class="calendar-day-number">28</div>
+              <div class="calendar-task task-repair">⚡ Sensor fix</div>
+            </div>
+            <div class="calendar-day weekend">
+              <div class="calendar-day-number">29</div>
+            </div>
+            <div class="calendar-day weekend">
+              <div class="calendar-day-number">30</div>
+            </div>
+            
+            <div class="calendar-day">
+              <div class="calendar-day-number">1</div>
+              <div class="calendar-task task-maintenance">🔧 Monthly</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">2</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">3</div>
+              <div class="calendar-task task-inspection">🔍 QC Review</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">4</div>
+            </div>
+            <div class="calendar-day">
+              <div class="calendar-day-number">5</div>
+              <div class="calendar-task task-maintenance">🔧 Backup</div>
+            </div>
+            <div class="calendar-day weekend">
+              <div class="calendar-day-number">6</div>
+            </div>
+            <div class="calendar-day weekend">
+              <div class="calendar-day-number">7</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <span class="badge badge-info">Weekly</span>
+            <span class="badge badge-purple">Monthly</span>
+            <span class="badge badge-success">Seasonal</span>
+            <span class="badge badge-warning">Annual</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      Developed by <a href="https://github.com/Svyatoslav-stack" target="_blank">Svyatoslav Rogozin</a> • University of Tartu • 2025
+    </div>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Show selected section
+      document.getElementById(sectionId).classList.add('active');
+      
+      // Update nav tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
