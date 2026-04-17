@@ -35,20 +35,21 @@
       width: 100%; 
     }
 
-    .demo-badge {
+    .test-banner {
       position: absolute;
       top: 10px;
-      right: 10px;
+      left: 45%;
+      transform: translateX(-50%);
       z-index: 9999;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-      text-transform: uppercase;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .test-banner img {
+      height: 100px;
+      width: auto;
     }
 
     .popup-update-time {
@@ -58,19 +59,63 @@
       font-style: italic;
     }
 
+    #sidebar-times-list {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(15, 23, 42, 0.1);
+    }
+    
     @media (max-width: 600px) { 
-      .demo-badge {
-        top: auto;
-        bottom: 10px;
-        right: 10px;
-        font-size: 10px;
-        padding: 6px 12px;
+      .test-banner {
+        font-size: 12px;
+        padding: 6px 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: calc(100vw - 120px);
       }
+      .test-banner img {
+        height: 60px;
+      }
+      
+      /* Адаптация popup'ов для мобильных - половина ширины экрана */
       .leaflet-popup-content {
         width: calc(50vw - 20px) !important;
         max-width: 180px;
         min-width: 150px;
       }
+
+      .violations-body-wrap {
+        max-height: min(30vh, 180px);
+      }
+
+      .alarm-card {
+        padding: 6px 8px;
+        margin-bottom: 6px;
+        font-size: 11px;
+        border-left-width: 3px;
+        border-radius: 8px;
+      }
+
+      .alarm-name {
+        font-size: 11px;
+      }
+
+      .alarm-summary {
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+
+      .alarm-meta {
+        font-size: 10px;
+        gap: 3px;
+      }
+
+      .severity-pill {
+        font-size: 8px;
+        padding: 2px 5px;
+      }
+      
+      /* Боковая панель на мобильных - выдвижная снизу */
       .station-sidebar {
         width: 100%;
         max-width: 100%;
@@ -83,22 +128,29 @@
         transform: translateY(100%);
         padding: 16px;
       }
+      
       .station-sidebar.visible {
         transform: translateY(0);
       }
+      
+      /* Улучшение touch-целей */
       .sidebar-close {
         min-width: 44px;
         min-height: 44px;
         font-size: 28px;
       }
+      
       .station-icon-core {
         font-size: 13px;
       }
+      
       .cluster-icon-core {
         font-size: 16px;
       }
+      
     }
 
+    /* Современные маркеры станций */
     .station-icon-wrapper { 
       width: 100%; 
       height: 100%;
@@ -136,7 +188,10 @@
     .station-icon-core.online { background: #16a34a; }
     .station-icon-core.warning { background: #eab308; }
     .station-icon-core.error { background: #dc2626; }
-    .station-icon-core.offline { background: #dc2626; }
+    .station-icon-core.offline { background: #94a3b8; }
+    .station-icon-core.red { background: #dc2626; }
+    .station-icon-core.green { background: #16a34a; }
+    .station-icon-core.yellow { background: #f59e0b; }
     .station-icon-core.recovering { background: #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.6); }
 
     .station-icon-core .station-letter {
@@ -174,6 +229,12 @@
       color: #0f172a;
     }
 
+    .station-icon-core .station-alert.error {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    /* Кластеры */
     .cluster-icon-wrapper { 
       width: 100%; 
       height: 100%;
@@ -211,6 +272,34 @@
     .cluster-icon-core.red { background: #dc2626; }
     .cluster-icon-core.yellow { background: #f59e0b; }
 
+    .cluster-icon-core .cluster-alert {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    }
+
+    .cluster-icon-core .cluster-alert.warning {
+      background: #eab308;
+      color: #0f172a;
+    }
+
+    .cluster-icon-core .cluster-alert.error {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    /* Стили для Leaflet popup */
     .leaflet-popup-content-wrapper {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -224,7 +313,7 @@
 
     .leaflet-popup-content {
       margin: 0;
-      width: 250px;
+      width: min(300px, calc(100vw - 40px));
       max-width: calc(100vw - 40px);
     }
 
@@ -252,6 +341,16 @@
       flex: 1;
       justify-content: center;
     }
+    
+    @media (max-width: 600px) {
+      .station-header {
+        align-items: center;
+      }
+      
+      .station-header > div {
+        align-items: flex-start;
+      }
+    }
 
     .station-header h2 {
       font-size: 15px;
@@ -259,6 +358,54 @@
       margin: 0;
       color: var(--text);
       line-height: 1.2;
+    }
+    
+    .station-name-clickable {
+      cursor: default;
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+      user-select: none;
+    }
+
+    .sidebar-temperature {
+      margin: 2px 0 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      display: none;
+      line-height: 1.25;
+    }
+
+    .sidebar-recovery {
+      margin: 6px 0 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #b45309;
+      background: #fef3c7;
+      border-radius: 8px;
+      padding: 6px 10px;
+      display: none;
+    }
+    
+    /* На мобильных делаем название кликабельным */
+    @media (max-width: 600px) {
+      .station-name-clickable {
+        cursor: pointer;
+        text-decoration: underline;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .station-name-clickable:hover {
+        opacity: 0.8;
+      }
+      
+      .station-name-clickable:active {
+        opacity: 0.6;
+      }
     }
 
     .status-pill {
@@ -279,6 +426,12 @@
       background: var(--offline-bg);
       color: var(--offline);
       border: 1px solid var(--offline-border);
+    }
+
+    .status-pill.recovering {
+      background: #fef3c7;
+      color: #d97706;
+      border: 1px solid #f59e0b;
     }
 
     .status-pill.recovering {
@@ -304,7 +457,16 @@
       line-height: 1 !important;
       font-weight: 500;
     }
-
+    
+    .section-title + * {
+      margin-top: 0 !important;
+    }
+    
+    .station-header + .station-section {
+      margin-top: 2px !important;
+      padding-top: 5px !important;
+    }
+    
     .device-list {
       list-style: none;
       margin: 2px 0 0 0;
@@ -325,6 +487,20 @@
       font-weight: 500;
     }
 
+    .status-dot {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-dot.online {
+      color: var(--online);
+    }
+
+    .status-dot.offline {
+      color: var(--offline);
+    }
+
+    /* Статусы компонентов в стиле status-pill */
     .device-list .status-pill {
       font-size: 11px;
       padding: 3px 8px 4px;
@@ -351,6 +527,29 @@
       border: 1px solid #f59e0b;
     }
 
+    .timestamp {
+      font-family: "Roboto", sans-serif;
+      font-size: 13px;
+      margin: 0;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .violations-section {
+      margin-top: 0;
+      font-size: 12px;
+    }
+    
+    .violations-section .no-violations { 
+      color: var(--online); 
+      font-weight: 500; 
+    }
+    
     .violations-section .violations,
     .station-section .violations { 
       color: #dc2626; 
@@ -359,10 +558,20 @@
 
     .station-section .violations.recovery-message {
       color: #d97706;
+      background: none;
+      border-radius: 0;
+      padding: 0;
       font-weight: 500;
       margin-bottom: 4px;
+      border-left: none;
     }
-
+    
+    .violations-section .violations strong,
+    .station-section .violations strong {
+      font-weight: 700;
+    }
+    
+    /* Специальный стиль для заголовка Violations */
     .section-title.violations-title {
       color: #dc2626;
       font-weight: 700;
@@ -372,6 +581,177 @@
       color: #d97706;
     }
 
+    .alarm-card {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-left: 4px solid #dc2626;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      color: #1f2937;
+    }
+
+    .alarm-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .alarm-card.severity-warning {
+      background: #fffbeb;
+      border-color: #fde68a;
+      border-left-color: #d97706;
+    }
+
+    .alarm-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .alarm-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #7f1d1d;
+      line-height: 1.3;
+    }
+
+    .severity-pill {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .severity-pill.critical {
+      color: #b91c1c;
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+    }
+
+    .severity-pill.warning {
+      color: #b45309;
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+    }
+
+    .alarm-summary {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .alarm-meta {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.4;
+    }
+
+    .alarm-meta .meta-label {
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .alarm-meta .channels-line {
+      word-break: break-word;
+    }
+
+    /* Длинный список алармов: скролл внутри попапа, карта остаётся доступной */
+    .violations-body-wrap {
+      max-height: min(48vh, 380px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      padding-right: 2px;
+      margin-right: -2px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .violations-body-wrap::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .violations-body-wrap::-webkit-scrollbar-thumb {
+      background: rgba(15, 23, 42, 0.2);
+      border-radius: 3px;
+    }
+
+    /* Ноутбуки ~13" и узкие окна: компактнее карточки и ниже потолок скролла */
+    @media (max-width: 1440px) and (min-width: 601px) {
+      .leaflet-popup-content {
+        width: min(312px, calc(100vw - 48px));
+      }
+
+      .violations-body-wrap {
+        max-height: min(38vh, 300px);
+      }
+
+      .alarm-card {
+        padding: 8px 10px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+        border-left-width: 3px;
+      }
+
+      .alarm-header {
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+
+      .alarm-name {
+        font-size: 13px;
+      }
+
+      .severity-pill {
+        font-size: 9px;
+        padding: 2px 6px;
+        letter-spacing: 0.03em;
+      }
+
+      .alarm-summary {
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+
+      .alarm-meta {
+        font-size: 11px;
+        gap: 4px;
+        line-height: 1.35;
+      }
+
+      .section-title.violations-title {
+        margin: 4px 0 6px 0 !important;
+      }
+    }
+
+    /* Низкая высота окна (dock, split-screen) */
+    @media (max-height: 820px) and (min-width: 601px) {
+      .violations-body-wrap {
+        max-height: min(32vh, 240px);
+      }
+    }
+    
+    .toggle-link { 
+      display: inline-block; 
+      margin-top: 6px; 
+      font-size: 11px;
+      color: var(--text);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .toggle-link:hover {
+      color: var(--online);
+    }
+
+    /* Маленький указатель снизу (как точка на карте) */
     .map-pointer {
       width: 12px;
       height: 12px;
@@ -412,18 +792,42 @@
       font-family: 'Roboto Mono', monospace;
     }
 
+    .params-list li span:last-child.flow-rate-normal {
+      font-weight: 400;
+    }
+
+    .params-list li span:last-child.flow-rate-ideal {
+      color: #16a34a;
+      font-weight: 400;
+    }
+
+    .params-list li span:last-child.flow-rate-warning {
+      color: #eab308;
+      font-weight: 400;
+    }
+
+    .params-list li span:last-child.flow-rate-error {
+      color: #dc2626;
+      font-weight: 400;
+    }
+
+    /* Цветовое кодирование для всех параметров Licor 7200 */
     .params-list li span:last-child.param-ideal {
       color: #16a34a;
+      font-weight: 400;
     }
 
     .params-list li span:last-child.param-warning {
       color: #eab308;
+      font-weight: 400;
     }
 
     .params-list li span:last-child.param-error {
       color: #dc2626;
+      font-weight: 400;
     }
 
+    /* Боковая панель параметров станции */
     .station-sidebar {
       position: fixed;
       bottom: 0;
@@ -471,26 +875,6 @@
       margin: 0;
     }
 
-    .sidebar-temperature {
-      margin: 2px 0 0;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      display: none;
-      line-height: 1.25;
-    }
-
-    .sidebar-recovery {
-      margin: 6px 0 0;
-      font-size: 13px;
-      font-weight: 600;
-      color: #b45309;
-      background: #fef3c7;
-      border-radius: 8px;
-      padding: 6px 10px;
-      display: none;
-    }
-
     .sidebar-close {
       background: none;
       border: none;
@@ -519,19 +903,12 @@
     .sidebar-content {
       margin-top: 8px;
     }
-
-    #sidebar-times-list {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(15, 23, 42, 0.1);
-    }
   </style>
 </head>
 <body>
-  <div class="demo-badge">✦ Demo</div>
-
   <div id="map"></div>
 
+  <!-- Боковая панель параметров станции -->
   <div id="stationSidebar" class="station-sidebar">
     <div class="sidebar-header">
       <div class="sidebar-title-block">
@@ -542,7 +919,15 @@
       <button class="sidebar-close" onclick="closeSidebar()" title="Close">×</button>
     </div>
     <div class="sidebar-content">
-      <ul class="params-list" id="sidebar-params-list"></ul>
+      <ul class="params-list" id="sidebar-params-list">
+        <li id="sidebar-flow-rate-item"><span id="sidebar-flow-rate-label">Flow Rate:</span><span id="sidebar-flow-rate">-</span></li>
+        <li id="sidebar-aerodyne-item" style="display: none;"><span id="sidebar-aerodyne-label">Aerodyne Flow Rate:</span><span id="sidebar-aerodyne-flow-rate">-</span></li>
+        <li id="sidebar-flow-drive-item"><span id="sidebar-flow-drive-label">Flow Drive:</span><span id="sidebar-flow-drive">-</span></li>
+        <li id="sidebar-tin-item"><span id="sidebar-tin-label">Licor 7200 Inlet Temperature:</span><span id="sidebar-tin">-</span></li>
+        <li id="sidebar-tout-item"><span id="sidebar-tout-label">Licor 7200 Outlet Temperature:</span><span id="sidebar-tout">-</span></li>
+        <li id="sidebar-signal-item"><span id="sidebar-signal-label">Signal Strength:</span><span id="sidebar-signal">-</span></li>
+      </ul>
+      <p class="popup-update-time" id="sidebar-average-time" style="display: none; margin-top: 8px;"></p>
       <ul class="params-list" id="sidebar-times-list" style="display: none;">
         <li><span>Last HF Data Time:</span><span class="timestamp" id="sidebar-hf-time">-</span></li>
         <li><span>Last LF Data Time:</span><span class="timestamp" id="sidebar-lf-time">-</span></li>
@@ -552,123 +937,152 @@
   </div>
 
   <script>
-    const stations = [
-      { 
-        name: "Vellaberg",
-        shortName: "V",
-        fullName: "Vellaberg Forest Research Station",
-        coords: [58.72, 25.85],
-        status: "Online",
-        components: {
-          "Licor 7200": "Online",
-          "Anemometer": "Online",
-          "LF Sensors": "Online"
-        },
-        params: {
-          flowRate: { value: 16.4, unit: "L/min", status: "ideal" },
-          pressure: { value: 2.3, unit: "kPa", status: "ideal" },
-          power: { value: 11.2, unit: "V", status: "ideal" },
-          drive: { value: 41.8, unit: "%", status: "normal" },
-          tin: { value: 24.6, unit: "°C", status: "normal" },
-          tout: { value: 25.2, unit: "°C", status: "normal" },
-          signal: { value: 97.3, unit: "%", status: "ideal" }
-        },
-        timestamps: { hf: "2025-11-28 14:32:15", lf: "2025-11-28 14:30:00" },
-        temperature: -3.7,
-        lastUpdate: "2025-11-28 14:32:15"
-      },
-      { 
-        name: "Tammaru",
-        shortName: "T",
-        fullName: "Tammaru CC Site",
-        coords: [58.35, 26.15],
-        status: "Online",
-        components: {
-          "Licor 7200": "Online",
-          "Anemometer": "Online",
-          "LF Sensors": "Online"
-        },
-        params: {
-          flowRate: { value: 15.9, unit: "L/min", status: "ideal" },
-          pressure: { value: 2.1, unit: "kPa", status: "ideal" },
-          power: { value: 10.8, unit: "V", status: "ideal" },
-          drive: { value: 38.5, unit: "%", status: "normal" },
-          tin: { value: 23.8, unit: "°C", status: "normal" },
-          tout: { value: 24.3, unit: "°C", status: "normal" },
-          signal: { value: 94.8, unit: "%", status: "ideal" }
-        },
-        timestamps: { hf: "2025-11-28 14:31:42", lf: "2025-11-28 14:30:00" },
-        temperature: -2.1,
-        lastUpdate: "2025-11-28 14:31:42"
-      },
-      { 
-        name: "Koidula",
-        shortName: "K",
-        fullName: "Koidula Forest Research Station",
-        coords: [58.08, 26.55],
-        status: "Recovering",
-        components: {
-          "Licor 7200": "Recovering",
-          "Anemometer": "Online",
-          "LF Sensors": "Online"
-        },
-        violations: ["Data synchronization in progress"],
-        recovery: { lag: 35, rate: 2.1 },
-        params: {
-          flowRate: { value: 14.1, unit: "L/min", status: "warning" },
-          pressure: { value: 1.6, unit: "kPa", status: "ideal" },
-          power: { value: 9.4, unit: "V", status: "ideal" },
-          drive: { value: 52.3, unit: "%", status: "normal" },
-          tin: { value: 25.1, unit: "°C", status: "normal" },
-          tout: { value: 25.8, unit: "°C", status: "normal" },
-          signal: { value: 86.7, unit: "%", status: "warning" }
-        },
-        timestamps: { hf: "2025-11-28 14:28:33", lf: "2025-11-28 14:00:00" },
-        temperature: -1.4,
-        lastUpdate: "2025-11-28 14:28:33"
-      },
-      { 
-        name: "Saaremets",
-        shortName: "S",
-        fullName: "Saaremets Research Station",
-        coords: [58.52, 25.25],
-        status: "Offline",
-        components: {
-          "Licor 7200": "Offline",
-          "Anemometer": "Online",
-          "LF Sensors": "Offline"
-        },
-        violations: [
-          "Data is outdated by 2h 15min",
-          "Signal strength: 68%"
-        ],
-        params: {
-          flowRate: { value: 10.8, unit: "L/min", status: "error" },
-          pressure: { value: 0.7, unit: "kPa", status: "error" },
-          power: { value: 3.9, unit: "V", status: "error" },
-          drive: { value: 89.2, unit: "%", status: "warning" },
-          tin: { value: 29.4, unit: "°C", status: "warning" },
-          tout: { value: 31.2, unit: "°C", status: "error" },
-          signal: { value: 68.4, unit: "%", status: "error" }
-        },
-        timestamps: { hf: "2025-11-28 12:17:22", lf: "2025-11-28 12:00:00" },
-        temperature: 0.2,
-        lastUpdate: "2025-11-28 12:17:22"
-      }
+    let stations = [];
+    let map = null;
+
+    const DEMO_STATIONS = [
+      { name: "Agali_II", fullName: "Kõdupõllu mõõtejaam", coords: [58.95, 24.12], apiUrl: "demo://station_status/Agali_II" },
+      { name: "Jarvselja_CC", fullName: "Vilukose metsik", coords: [58.27, 27.05], apiUrl: "demo://station_status/Jarvselja_CC" },
+      { name: "PaloCC", fullName: "Hallikuraba vaatluskoht", coords: [58.52, 25.38], apiUrl: "demo://station_status/PaloCC" },
+      { name: "Soontaga", fullName: "Tinnikheina niidu jaam", coords: [57.88, 26.42], apiUrl: "demo://station_status/Soontaga" }
     ];
 
-    const regionBounds = L.latLngBounds([57.0, 20.5], [60.5, 29.0]);
+    const DEMO_STATION_DATA = {
+      Agali_II: {
+        overall_status: "Online",
+        components: {
+          gas_analyzer: "Online",
+          aerodyne: "Online",
+          anemometer: "Online",
+          lf_sensors: "Online"
+        },
+        component_labels: {},
+        timestamps: {
+          last_hf_time: "2026-04-16T10:30:00Z",
+          last_lf_time: "2026-04-16T10:28:00Z",
+          server_time: "2026-04-16T10:31:00Z"
+        },
+        violations: {},
+        recovery: null,
+        alarm_cards: null,
+        flow_rate_lpm: 15.2,
+        flow_drive: 42.1,
+        tin_avg: 12.3,
+        tout_avg: 11.8,
+        avg_signal_strength: 97,
+        rot_airtc_avg: 8.4,
+        aerodyne_flow_rate: 18.2
+      },
+      Jarvselja_CC: {
+        overall_status: "Offline",
+        components: {
+          gas_analyzer: "Offline",
+          anemometer: "Offline",
+          lf_sensors: "Offline"
+        },
+        timestamps: {
+          last_hf_time: "2026-04-15T18:00:00Z",
+          last_lf_time: "2026-04-15T18:00:00Z",
+          server_time: "2026-04-16T10:31:00Z"
+        },
+        violations: {},
+        recovery: null,
+        alarm_cards: [
+          {
+            title: "HF data gap",
+            severity: "Critical",
+            summary: "No valid Licor readings in the last window.",
+            status: "Open",
+            issue: "Backfill pending",
+            validReadings: "0/12",
+            affectedChannels: "CH4, CO2"
+          }
+        ],
+        flow_rate_lpm: null,
+        flow_drive: null,
+        tin_avg: null,
+        tout_avg: null,
+        avg_signal_strength: null,
+        rot_airtc_avg: -2.1
+      },
+      PaloCC: {
+        overall_status: "Online",
+        components: {
+          gas_analyzer: "Recovering",
+          anemometer: "Online",
+          lf_sensors: "Online"
+        },
+        timestamps: {
+          last_hf_time: "2026-04-16T10:25:00Z",
+          last_lf_time: "2026-04-16T10:30:00Z",
+          server_time: "2026-04-16T10:31:00Z"
+        },
+        violations: {},
+        recovery: {
+          recovering: true,
+          lag_minutes: 45,
+          catchup_rate: 1.2
+        },
+        alarm_cards: null,
+        flow_rate_lpm: 14.8,
+        flow_drive: 38.0,
+        tin_avg: 11.0,
+        tout_avg: 10.5,
+        avg_signal_strength: 88,
+        rot_airtc_avg: 5.2
+      },
+      Soontaga: {
+        overall_status: "Online",
+        components: {
+          gas_analyzer: "Online",
+          anemometer: "Online",
+          decoupled_anemometer: "Online",
+          lf_sensors: "Online"
+        },
+        timestamps: {
+          last_hf_time: "2026-04-16T10:31:00Z",
+          last_lf_time: "2026-04-16T10:30:00Z",
+          server_time: "2026-04-16T10:31:00Z"
+        },
+        violations: {},
+        recovery: null,
+        alarm_cards: null,
+        flow_rate_lpm: 16.0,
+        flow_drive: 35.0,
+        tin_avg: 10.2,
+        tout_avg: 9.9,
+        avg_signal_strength: 102,
+        rot_airtc_avg: 0.0
+      }
+    };
 
-    const map = L.map('map', {
-      minZoom: 7, maxZoom: 11, zoomControl: false, maxBounds: regionBounds, maxBoundsViscosity: 1.0
-    });
-    
-    const stationBounds = L.latLngBounds(stations.map(s => s.coords));
-    map.fitBounds(stationBounds, { padding: [80, 80], maxZoom: 9 });
+    const loadStations = async () => {
+      stations = DEMO_STATIONS;
+    };
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '' }).addTo(map);
+    // Инициализация карты и приложения
+    const initializeApp = async () => {
+      // Сначала загружаем станции
+      await loadStations();
 
-    const determineClusterColor = (markers) => {
+      const estoniaBounds = L.latLngBounds([57.0, 20.5], [60.5, 29.0]);
+
+      map = L.map('map', {
+        minZoom: 7, maxZoom: 11, zoomControl: false, maxBounds: estoniaBounds, maxBoundsViscosity: 1.0
+      });
+      
+      // Вычисляем границы, чтобы показать все станции
+      if (stations.length > 0) {
+        const stationBounds = L.latLngBounds(stations.map(s => s.coords));
+        map.fitBounds(stationBounds, { padding: [50, 50] });
+      } else {
+        // Если станций нет, показываем границы Эстонии
+        map.fitBounds(estoniaBounds);
+      }
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '' }).addTo(map);
+
+      const determineClusterColor = (markers) => {
       let hasRed = false;
       let hasYellow = false;
       markers.forEach(m => {
@@ -681,236 +1095,923 @@
       return 'green';
     };
 
+    const determineClusterAlertLevel = (markers) => {
+      let level = null;
+      markers.forEach(marker => {
+        const markerLevel = marker.options.alertLevel || marker.options.icon?.options?.alertLevel;
+        if (markerLevel === 'error') {
+          level = 'error';
+        } else if (markerLevel === 'warning' && level !== 'error') {
+          level = 'warning';
+        }
+      });
+      return level;
+    };
+
     const createClusterIcon = (cluster) => {
       const isMobile = window.innerWidth <= 600;
       const size = isMobile ? 32 : 48;
       const anchor = Math.round(size / 2);
       const ms = cluster.getAllChildMarkers();
       const color = determineClusterColor(ms);
+      const alertLevel = determineClusterAlertLevel(ms);
       const count = ms.length;
+      const alertHtml = alertLevel
+        ? `<span class="cluster-alert ${alertLevel}">!</span>`
+        : '';
       return L.divIcon({
-        className: 'cluster-icon-wrapper',
-        html: `<span class="cluster-icon-core ${color}">${count}</span>`,
+        className: `cluster-icon-wrapper`,
+        html: `<span class="cluster-icon-core ${color}">${count}${alertHtml}</span>`,
         iconSize: [size, size],
         iconAnchor: [anchor, anchor]
       });
     };
-
     const markers = L.markerClusterGroup({ iconCreateFunction: createClusterIcon });
 
-    const createStationIcon = (station) => {
+    const createStationIcon = (color, letter, alertLevel = null) => {
       let statusClass = 'offline';
-      let color = 'red';
-      
-      if (station.status === 'Online') {
+      if (color === 'green') {
         statusClass = 'online';
-        color = 'green';
-      } else if (station.status === 'Recovering') {
+      } else if (color === 'red') {
+        statusClass = 'error';
+      } else if (color === 'yellow' || color === 'recovering') {
         statusClass = 'recovering';
-        color = 'yellow';
       }
-
-      const hasAlert = station.violations && station.violations.length > 0;
-      const alertHtml = hasAlert ? `<span class="station-alert ${statusClass === 'recovering' ? 'warning' : ''}">!</span>` : '';
-      
+      const alertHtml = alertLevel ? `<span class="station-alert ${alertLevel}">!</span>` : '';
       const isMobile = window.innerWidth <= 600;
       const size = isMobile ? 25 : 34;
       const anchor = Math.round(size / 2);
-
       return L.divIcon({
-        className: 'station-icon-wrapper',
-        html: `<span class="station-icon-core ${statusClass}"><span class="station-letter">${station.shortName}</span>${alertHtml}</span>`,
-        iconSize: [size, size],
+        className: `station-icon-wrapper`, 
+        html: `<span class="station-icon-core ${color} ${statusClass}"><span class="station-letter">${letter}</span>${alertHtml}</span>`, 
+        iconSize: [size, size], 
         iconAnchor: [anchor, anchor],
         popupAnchor: [0, -anchor],
-        color
+        color, 
+        stationLetter: letter,
+        alertLevel
       });
     };
 
-    const formatTs = (ts) => ts || 'N/A';
+    const formatTs = (iso) => {
+      if (!iso) return 'N/A';
+      const d = new Date(iso);
+      // Время приходит в эстонском времени с offset, форматируем в Europe/Tallinn
+      return new Intl.DateTimeFormat('en-GB', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        timeZone: 'Europe/Tallinn'
+      }).format(d);
+    };
 
     const formatRecoverySummary = (recovery) => {
-      if (!recovery) return null;
+      if (!recovery || !recovery.recovering) return null;
       let message = 'Station is working but recovering.';
+      
       const details = [];
-      if (recovery.lag) {
-        const lag = recovery.lag >= 120 ? `${Math.round(recovery.lag / 60)}h` : `${recovery.lag} min`;
+      if (Number.isFinite(recovery.lag_minutes)) {
+        const lag = recovery.lag_minutes >= 120
+          ? `${Math.round(recovery.lag_minutes / 60)}h`
+          : `${Math.round(recovery.lag_minutes)} min`;
         details.push(`Lag ${lag}`);
       }
-      if (recovery.rate) {
-        details.push(`Catch-up ${recovery.rate.toFixed(1)} times`);
+      if (Number.isFinite(recovery.catchup_rate)) {
+        details.push(`Catch-up ${recovery.catchup_rate.toFixed(1)} times`);
       }
+      
       if (details.length > 0) {
         message += `<br>${details.join(', ')}.`;
       }
+      
       return message;
     };
 
-    const renderComponentList = (components) => {
-      if (!components) return '';
-      return Object.entries(components).map(([name, status]) => {
-        let statusClass = 'offline';
-        if (status === 'Online') statusClass = 'online';
-        else if (status === 'Recovering') statusClass = 'recovering';
-        return `<li><span>${name}</span><span class="status-pill ${statusClass}">${status}</span></li>`;
-      }).join('');
+    const componentLabels = {
+      gas_analyzer: "Gas Analyzer",
+      anemometer: "Anemometer",
+      lf_sensors: "LF Sensors",
+      aerodyne: "Aerodyne",
+      decoupled_anemometer: "Decoupled Anemometer"
+    };
+    const gasAnalyzerLabelFallback = (stationName) => {
+      if (stationName === "Sinikula" || stationName === "Betong") return "Miro MGA-4";
+      if (stationName === "Kauru") return "Picarro G2311";
+      return "Licor 7200";
+    };
+    /** apiLabels — result.component_labels с API (приоритет над локальным fallback). */
+    const renderComponentList = (components, stationName, apiLabels) => {
+      if (!components) return "";
+      const labelFor = (key) => {
+        if (apiLabels && apiLabels[key]) return apiLabels[key];
+        if (key === "gas_analyzer") return gasAnalyzerLabelFallback(stationName);
+        return componentLabels[key] || key;
+      };
+      const rowHtml = (key, val) => {
+        const label = labelFor(key);
+        let statusClass = "offline";
+        if (val === "Online") statusClass = "online";
+        else if (val === "Recovering") statusClass = "recovering";
+        return `<li><span>${label}</span><span class="status-pill ${statusClass}">${val}</span></li>`;
+      };
+      if (stationName === "Agali_II") {
+        const order = ["gas_analyzer", "aerodyne", "anemometer", "lf_sensors"];
+        return order.filter((k) => components[k] !== undefined).map((k) => rowHtml(k, components[k])).join("");
+      }
+      if (stationName === "Soontaga") {
+        const order = ["gas_analyzer", "anemometer", "decoupled_anemometer", "lf_sensors"];
+        return order.filter((k) => components[k] !== undefined).map((k) => rowHtml(k, components[k])).join("");
+      }
+      return Object.keys(components).map((key) => rowHtml(key, components[key])).join("");
     };
 
-    const renderViolations = (violations, recovery) => {
-      const recoveryMessage = formatRecoverySummary(recovery);
-      const isRecovering = Boolean(recovery);
-      const violationList = violations ? violations.filter(v => !v.includes("recovering")) : [];
-      const showBlock = Boolean(recoveryMessage) || violationList.length > 0;
-      
-      if (!showBlock) return '';
-      
-      const violationTitleClass = isRecovering ? "violations-title recovering" : "violations-title";
-      
-      return `
-        <div class="station-section">
-          <p class="section-title ${violationTitleClass}">Violations</p>
-          ${recoveryMessage ? `<div class="violations recovery-message">${recoveryMessage}</div>` : ''}
-          ${violationList.length ? violationList.map(v => `<div class="violations">${v}</div>`).join('') : ''}
-        </div>
-      `;
+    // toggle для "show more"
+    function toggleMore(id, link) {
+      const el = document.getElementById(id);
+      const shown = el.style.display !== 'none';
+      el.style.display = shown ? 'none' : 'block';
+      link.textContent = shown ? 'Show more' : 'Show less';
+    }
+
+    // Строки вида «Компонент колонка: N/M valid – …» с одинаковым хвостом схлопываем в одну
+    const COLUMN_VIOLATION_RE = /^(.+)\s([^\s:]+):\s*((?:\d+\/\d+|\d+)\s+valid.*)$/;
+
+    const groupColumnViolationsByTail = (lines) => {
+      const buckets = new Map();
+      const slots = [];
+
+      for (const line of lines) {
+        const m = line.match(COLUMN_VIOLATION_RE);
+        if (!m) {
+          slots.push({ type: "raw", line });
+          continue;
+        }
+        const componentLabel = m[1];
+        const column = m[2];
+        const tail = m[3];
+        const key = componentLabel + "\0" + tail;
+        if (!buckets.has(key)) {
+          buckets.set(key, { componentLabel, columns: [], tail });
+          slots.push({ type: "grp", key });
+        }
+        buckets.get(key).columns.push(column);
+      }
+
+      return slots.map((item) => {
+        if (item.type === "raw") return item.line;
+        const b = buckets.get(item.key);
+        if (b.columns.length === 1) {
+          return `${b.componentLabel} ${b.columns[0]}: ${b.tail}`;
+        }
+        return `${b.componentLabel} (${b.columns.join(", ")}): ${b.tail}`;
+      });
     };
 
-    let currentOpenStation = null;
+    const prepareViolationDisplayLines = (violations) => {
+      if (!violations) return [];
+      const flat = [...new Set(Object.values(violations).flat().filter(Boolean))].filter(
+        (v) => !v.includes("Station is Working but recovering")
+      );
+      return groupColumnViolationsByTail(flat);
+    };
 
-    const showStationSidebar = (station) => {
-      const sidebar = document.getElementById('stationSidebar');
-      const title = document.getElementById('sidebar-station-title');
-      const paramsList = document.getElementById('sidebar-params-list');
-      const updateTime = document.getElementById('sidebar-update-time');
-      const temperatureLine = document.getElementById('sidebar-temperature-line');
-      const recoveryBadge = document.getElementById('sidebar-recovery-badge');
-      const timesList = document.getElementById('sidebar-times-list');
-      const hfTime = document.getElementById('sidebar-hf-time');
-      const lfTime = document.getElementById('sidebar-lf-time');
+    // плоские нарушения + show more (порог = 5)
+    const renderViolationsFlat = (violations, uniqId, limit = 5) => {
+      if (!violations) return `<span class="no-violations">None</span>`;
+      const all = prepareViolationDisplayLines(violations);
+      if (!all.length) return `<span class="no-violations">None</span>`;
 
-      currentOpenStation = station.name;
-      title.textContent = station.fullName;
-
-      if (station.temperature !== undefined) {
-        const temp = station.temperature;
-        const icon = temp > 0 ? '☀️' : temp < 0 ? '❄️' : '🌡️';
-        const color = temp > 0 ? '#f97316' : temp < 0 ? '#38bdf8' : '#14b8a6';
-        temperatureLine.innerHTML = `Air temperature: ${icon} <span style="color: ${color}">${temp > 0 ? '+' : ''}${temp.toFixed(1)} °C</span>`;
-        temperatureLine.style.display = 'block';
-      } else {
-        temperatureLine.style.display = 'none';
-      }
-
-      const recoveryMessage = formatRecoverySummary(station.recovery);
-      if (recoveryMessage) {
-        recoveryBadge.innerHTML = recoveryMessage;
-        recoveryBadge.style.display = 'block';
-      } else {
-        recoveryBadge.style.display = 'none';
-      }
-
-      const paramLabels = {
-        flowRate: 'Licor 7200 Flow Rate',
-        pressure: 'Licor 7200 Flow Pressure',
-        power: 'Licor 7200 Flow Power',
-        drive: 'Licor 7200 Flow Drive',
-        tin: 'Licor 7200 Inlet Temperature',
-        tout: 'Licor 7200 Outlet Temperature',
-        signal: 'Licor 7200 Signal Strength'
+      // Форматируем violation: причина до двоеточия - жирным, остальное - обычным
+      const formatViolation = (v) => {
+        // Для "Data is outdated" весь текст жирным
+        if (v.startsWith('Data is outdated')) {
+          return `<strong>${v}</strong>`;
+        }
+        // Для остальных violations используем двоеточие
+        const colonIndex = v.indexOf(':');
+        if (colonIndex !== -1) {
+          const reason = v.substring(0, colonIndex);
+          const details = v.substring(colonIndex);
+          return `<strong>${reason}</strong>${details}`;
+        }
+        return v;
       };
 
-      let paramsHtml = '';
-      if (station.params) {
-        for (const [key, param] of Object.entries(station.params)) {
-          const label = param.label || paramLabels[key] || key;
-          const statusClass = param.status === 'ideal' ? 'param-ideal' : 
-                             param.status === 'warning' ? 'param-warning' : 
-                             param.status === 'error' ? 'param-error' : '';
-          paramsHtml += `<li><span>${label}:</span><span class="${statusClass}">${param.value} ${param.unit}</span></li>`;
+      const first = all.slice(0, limit);
+      const rest  = all.slice(limit);
+
+      let html = first.map(v => `<div class="violations">${formatViolation(v)}</div>`).join("");
+      if (rest.length) {
+        const hidId = `more-${uniqId}`;
+        html += `
+          <div id="${hidId}" style="display:none;">
+            ${rest.map(v => `<div class="violations">${formatViolation(v)}</div>`).join("")}
+          </div>
+          <a href="#" class="toggle-link" onclick="toggleMore('${hidId}', this); return false;">
+            Show ${rest.length} more
+          </a>
+        `;
+      }
+      return html;
+    };
+
+    function escapeHtmlPopup(s) {
+      if (s == null) return "";
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    const renderAlarmCards = (cards, uniqId, limit = 5) => {
+      if (!cards || !cards.length) return `<span class="no-violations">None</span>`;
+      const renderOne = (c) => {
+        const sevClass =
+          c.severity === "Warning" || c.severity === "warning" ? "warning" : "critical";
+        const cardClass =
+          sevClass === "warning" ? "alarm-card severity-warning" : "alarm-card";
+        const vr =
+          c.validReadings != null && String(c.validReadings).trim() !== ""
+            ? `<div><span class="meta-label">Valid readings:</span> ${escapeHtmlPopup(
+                c.validReadings
+              )}</div>`
+            : "";
+        const ch =
+          c.affectedChannels != null && String(c.affectedChannels).trim() !== ""
+            ? `<div class="channels-line"><span class="meta-label">Affected channels:</span> ${escapeHtmlPopup(
+                c.affectedChannels
+              )}</div>`
+            : "";
+        return `
+          <div class="${cardClass}">
+            <div class="alarm-header">
+              <div class="alarm-name">${escapeHtmlPopup(c.title)}</div>
+              <span class="severity-pill ${sevClass}">${escapeHtmlPopup(
+          c.severity || "Critical"
+        )}</span>
+            </div>
+            <div class="alarm-summary">${escapeHtmlPopup(c.summary)}</div>
+            <div class="alarm-meta">
+              <div><span class="meta-label">Status:</span> ${escapeHtmlPopup(c.status)}</div>
+              ${vr}
+              <div><span class="meta-label">Issue:</span> ${escapeHtmlPopup(c.issue)}</div>
+              ${ch}
+            </div>
+          </div>`;
+      };
+      const first = cards.slice(0, limit);
+      const rest = cards.slice(limit);
+      let html = first.map(renderOne).join("");
+      if (rest.length) {
+        const hidId = `more-alarms-${uniqId}`;
+        html += `
+          <div id="${hidId}" style="display:none;">
+            ${rest.map(renderOne).join("")}
+          </div>
+          <a href="#" class="toggle-link" onclick="toggleMore('${hidId}', this); return false;">
+            Show ${rest.length} more
+          </a>`;
+      }
+      return html;
+    };
+
+    const fetchStationData = async (url) => {
+      if (typeof url === "string" && url.startsWith("demo://")) {
+        const m = url.match(/demo:\/\/station_status\/(.+)$/);
+        const key = m ? decodeURIComponent(m[1]) : null;
+        if (key && DEMO_STATION_DATA[key]) {
+          return JSON.parse(JSON.stringify(DEMO_STATION_DATA[key]));
         }
+        return null;
       }
-      paramsList.innerHTML = paramsHtml;
-      paramsList.style.display = paramsHtml ? 'grid' : 'none';
-
-      if (station.timestamps) {
-        hfTime.textContent = formatTs(station.timestamps.hf);
-        lfTime.textContent = formatTs(station.timestamps.lf) || 'N/A';
-        timesList.style.display = 'grid';
-      } else {
-        timesList.style.display = 'none';
+      try {
+        const resp = await fetch(url, { cache: "no-store" });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return await resp.json();
+      } catch (e) {
+        console.error("Fetch error:", e);
+        return null;
       }
-
-      updateTime.textContent = `Updated: ${formatTs(station.lastUpdate)}`;
-      sidebar.classList.add('visible');
     };
 
-    const closeSidebar = () => {
-      document.getElementById('stationSidebar').classList.remove('visible');
-      currentOpenStation = null;
-    };
+    let refreshTimer = null;
 
-    const updateMarkers = () => {
+    // Хранилище данных станций для боковой панели
+    const stationDataCache = {};
+    let currentOpenStation = null; // Текущая открытая станция в боковой панели
+
+    const updateMarkers = async () => {
+      if (refreshTimer) {
+        clearTimeout(refreshTimer);
+        refreshTimer = null;
+      }
+
+      // Сохраняем информацию об открытых popup перед очисткой
+      const previouslyOpenPopups = new Set();
+      markers.eachLayer((marker) => {
+        if (marker.isPopupOpen()) {
+          const stationName = marker.options.stationName;
+          if (stationName) {
+            previouslyOpenPopups.add(stationName);
+          }
+        }
+      });
+
       markers.clearLayers();
 
       for (const station of stations) {
-        let statusClass = 'offline';
-        let color = 'red';
-        
-        if (station.status === 'Online') {
-          statusClass = 'online';
-          color = 'green';
-        } else if (station.status === 'Recovering') {
-          statusClass = 'recovering';
-          color = 'recovering';
+        const data = await fetchStationData(station.apiUrl);
+        let overall = "Offline";
+        let components = {};
+        let timestamps = {};
+        let violations = {};
+        let recovery = null;
+        let alarmCards = null;
+
+        if (data) {
+          overall = data.overall_status || "Offline";
+          components = data.components || {};
+          timestamps = data.timestamps || {};
+          violations = data.violations || {};
+          recovery = data.recovery || null;
+          alarmCards = Array.isArray(data.alarm_cards) ? data.alarm_cards : null;
         }
 
+        const techAlertInfo = getStationTechAlert(station.name, data || {});
+        
+        if (data) {
+          // Сохраняем данные в кеш для боковой панели
+          stationDataCache[station.name] = { ...data, techAlertInfo };
+        }
+
+        const recoveryMessage = formatRecoverySummary(recovery);
+        const isRecovering = Boolean(recovery?.recovering);
+        if (isRecovering) {
+          overall = "Recovering";
+        }
+
+        const color = isRecovering ? "recovering" : (overall === "Online" ? "green" : "red");
+        let statusClass = "offline";
+        if (isRecovering) {
+          statusClass = "recovering";
+        } else if (overall === "Online") {
+          statusClass = "online";
+        }
+        const statusText = isRecovering ? "Recovering" : overall;
+        const fallbackViolationLines = prepareViolationDisplayLines(violations);
+        const useAlarmCards = alarmCards && alarmCards.length > 0;
+        const showViolationDetails = useAlarmCards || fallbackViolationLines.length > 0;
+        const showViolationsBlock = Boolean(recoveryMessage) || showViolationDetails;
+        const violationTitleClass = isRecovering ? "violations-title recovering" : "violations-title";
+        const violationsBodyHtml = useAlarmCards
+          ? renderAlarmCards(alarmCards, station.name)
+          : fallbackViolationLines.length
+            ? renderViolationsFlat(violations, station.name)
+            : "";
+        const violationBlockHtml = showViolationsBlock ? `
+            <div class="station-section">
+              <p class="section-title ${violationTitleClass}">Violations</p>
+              ${recoveryMessage ? `<div class="violations recovery-message">${recoveryMessage}</div>` : ''}
+              ${violationsBodyHtml ? `<div class="violations-body-wrap">${violationsBodyHtml}</div>` : ''}
+            </div>` : '';
+        const popupStationName = station.fullName;
+        // Делаем название станции кликабельным только на мобильных
+        const isMobile = window.innerWidth <= 600;
+        const nameOnClick = isMobile ? `onclick="openStationSidebarFromPopup('${station.name}')"` : '';
         const popupContent = `
           <div class="station-card">
             <div class="station-header">
-              <div><h2>${station.fullName}</h2></div>
-              <span class="status-pill ${statusClass}">${station.status}</span>
+              <div>
+                <h2 class="station-name-clickable" ${nameOnClick}>${popupStationName}</h2>
+              </div>
+              <span class="status-pill ${statusClass}">${statusText}</span>
             </div>
+
             <div class="station-section">
-              <p class="section-title">Equipment</p>
-              <ul class="device-list">${renderComponentList(station.components)}</ul>
+              <ul class="device-list">${renderComponentList(components, station.name, data && data.component_labels)}</ul>
             </div>
-            ${renderViolations(station.violations, station.recovery)}
+            ${violationBlockHtml}
+
             <div class="map-pointer ${color}"></div>
           </div>
         `;
 
+        const markerLetter = (station.fullName && String(station.fullName).trim().charAt(0)) || station.name.charAt(0);
         const marker = L.marker(station.coords, {
-          icon: createStationIcon(station)
+          icon: createStationIcon(color, markerLetter, techAlertInfo.level)
         }).bindPopup(popupContent);
+        marker.options.alertLevel = techAlertInfo.level;
+        
+        // Сохраняем имя станции в опциях маркера для восстановления popup
+        marker.options.stationName = station.name;
 
+        // Добавляем обработчик клика для показа боковой панели (только на больших экранах)
         marker.on('click', () => {
+          const cachedData = stationDataCache[station.name] || data;
+          // На больших экранах открываем боковую панель автоматически
           if (window.innerWidth > 600) {
-            showStationSidebar(station);
+            showStationSidebar(station.name, cachedData);
           }
+          // На мобильных пользователь кликнет на название станции в popup'е
         });
 
         markers.addLayer(marker);
+        
+        // Восстанавливаем открытые popup
+        if (previouslyOpenPopups.has(station.name)) {
+          marker.openPopup();
+        }
       }
 
       map.addLayer(markers);
-
+      
+      // Если боковая панель открыта, обновляем данные для текущей станции
       if (currentOpenStation) {
-        const station = stations.find(s => s.name === currentOpenStation);
-        if (station) showStationSidebar(station);
+        const updatedData = stationDataCache[currentOpenStation];
+        if (updatedData) {
+          showStationSidebar(currentOpenStation, updatedData);
+        }
+      }
+
+    };
+
+    const STATUS_CLASS_LIST = ['param-ideal', 'param-warning', 'param-error', 'flow-rate-ideal', 'flow-rate-warning', 'flow-rate-error', 'flow-rate-normal'];
+    const STATUS_CLASS_MAP = {
+      default: { ideal: 'param-ideal', warning: 'param-warning', error: 'param-error' },
+      legacyFlowRate: { ideal: 'flow-rate-ideal', warning: 'flow-rate-warning', error: 'flow-rate-error' }
+    };
+    const TECH_ALERT_STATUSES = new Set(['warning', 'error']);
+    const ALERT_PRIORITY = ['error', 'warning'];
+    const LICOR_STATIONS = new Set(['Agali_II', 'Soontaga', 'PaloCC', 'AgaliCC', 'Jarvselja_Forest', 'Jarvselja_CC']);
+
+    const evaluateStatus = (value, checks) => {
+      if (value === null || value === undefined || isNaN(value)) return null;
+      const numValue = parseFloat(value);
+      for (const check of checks) {
+        if (check.condition(numValue)) {
+          return check.status;
+        }
+      }
+      return null;
+    };
+
+    const applyStatusClass = (element, status, classMap = STATUS_CLASS_MAP.default) => {
+      if (!element) return;
+      STATUS_CLASS_LIST.forEach(cls => element.classList.remove(cls));
+      if (status && classMap[status]) {
+        element.classList.add(classMap[status]);
       }
     };
 
+    const getLicorFlowRateStatus = (value) => evaluateStatus(value, [
+      { status: 'ideal', condition: (v) => v >= 14.5 && v <= 17.0 },
+      { status: 'warning', condition: (v) => (v >= 13 && v < 14.5) || (v > 17.0 && v <= 18) },
+      { status: 'error', condition: () => true }
+    ]);
+
+    const getAerodyneFlowRateStatus = (value) => evaluateStatus(value, [
+      { status: 'ideal', condition: (v) => v >= 17 && v <= 19 },
+      { status: 'warning', condition: (v) => (v >= 16 && v < 17) || (v > 19 && v <= 20) },
+      { status: 'error', condition: () => true }
+    ]);
+
+    const getPicarroFlowRateStatus = (value) => evaluateStatus(value, [
+      { status: 'ideal', condition: (v) => v >= 4.5 && v <= 5.5 },
+      { status: 'warning', condition: (v) => (v >= 3.5 && v < 4.5) || (v > 5.5 && v <= 6.5) },
+      { status: 'error', condition: () => true }
+    ]);
+
+    const getLicorSignalStrengthStatus = (value) => evaluateStatus(value, [
+      { status: 'ideal', condition: (v) => v >= 90 && v <= 105 },
+      { status: 'warning', condition: (v) => (v >= 80 && v < 90) || (v > 105 && v <= 115) },
+      { status: 'error', condition: () => true } // <80 or >115
+    ]);
+
+    const getLicorFlowDriveStatus = (value) => evaluateStatus(value, [
+      { status: 'ideal', condition: (v) => v >= 30 && v <= 59.9 },
+      { status: 'warning', condition: (v) => (v >= 25 && v < 30) || (v > 59.9 && v <= 80) },
+      { status: 'error', condition: () => true } // <25 или >80
+    ]);
+
+    // Статус на основе разницы температур Inlet/Outlet
+    const getTemperatureDifferenceStatus = (tinValue, toutValue) => {
+      if (tinValue === null || tinValue === undefined || isNaN(tinValue) ||
+          toutValue === null || toutValue === undefined || isNaN(toutValue)) {
+        return null;
+      }
+      const diff = Math.abs(parseFloat(tinValue) - parseFloat(toutValue));
+      if (diff <= 2) return 'ideal';      // 0-2°C - зелёный (идеально)
+      if (diff <= 4) return 'warning';    // 2-4°C - жёлтый (предупреждение)
+      return 'error';                     // >4°C - красный (критично)
+    };
+
+    const getStationTechAlert = (stationName, stationData = {}) => {
+      const statuses = [];
+
+      if (LICOR_STATIONS.has(stationName)) {
+        statuses.push(getLicorFlowRateStatus(stationData.flow_rate_lpm));
+        statuses.push(getLicorSignalStrengthStatus(stationData.avg_signal_strength));
+        // Flow Drive для всех станций Licor 7200, включая Jarvselja_Forest
+        statuses.push(getLicorFlowDriveStatus(stationData.flow_drive));
+        
+        // Добавляем статус разницы температур (кроме Agali_II, где нет температурных данных)
+        if (stationName !== 'Agali_II') {
+          statuses.push(getTemperatureDifferenceStatus(stationData.tin_avg, stationData.tout_avg));
+        }
+      }
+
+      if (stationName === 'Agali_II' && stationData.aerodyne_flow_rate !== undefined) {
+        statuses.push(getAerodyneFlowRateStatus(stationData.aerodyne_flow_rate));
+      }
+
+      if (stationName === 'Kauru' && stationData.picarro_flow_rate !== undefined) {
+        statuses.push(getPicarroFlowRateStatus(stationData.picarro_flow_rate));
+      }
+
+      const activeStatuses = statuses.filter(Boolean);
+      const alertLevel = ALERT_PRIORITY.find(level => activeStatuses.includes(level)) || null;
+      return {
+        statuses: activeStatuses,
+        hasAlert: Boolean(alertLevel),
+        level: alertLevel
+      };
+    };
+
+    const blendColors = (start, end, factor) => start.map((c, i) => Math.round(c + (end[i] - c) * factor));
+    const getTemperatureColor = (value) => {
+      if (value === null || value === undefined || isNaN(value)) return null;
+      const num = parseFloat(value);
+      if (num > 0) return '#f97316';   // оранжевый
+      if (num < 0) return '#38bdf8';   // голубой
+      return '#14b8a6';                // специальный цвет для нуля
+    };
+    const zeroTemperatureEasterEgg = "Perfect zero ✨";
+    const formatTemperatureValue = (value) => {
+      if (value === null || value === undefined || isNaN(value)) return null;
+      const num = parseFloat(value);
+      return `${num > 0 ? '+' : ''}${num.toFixed(1)} °C`;
+    };
+
+    const stationTemperatureFields = {
+      Soontaga: ['rot_airtc_avg', 'ROT_AirTC_Avg'],
+      Sinikula: ['rot_airtc_avg', 'ROT_AirTC_Avg'],
+      PaloCC: ['rot_airtc_avg', 'ROT_AirTC_Avg'],
+      Agali_II: ['rot_airtc_avg', 'ROT_AirTC_Avg'],
+      AgaliCC: ['airtc_avg', 'AirTC_Avg'],
+      Kauru: ['rot_airt_avg', 'ROT_AirT_Avg'],
+      Jarvselja_Forest: ['rot_airtc_avg', 'ROT_AirTC_Avg'],
+      Jarvselja_CC: ['rot_airtc_avg', 'ROT_AirTC_Avg']
+    };
+
+    const getStationTemperatureValue = (stationName, stationData) => {
+      const fields = stationTemperatureFields[stationName];
+      if (!fields || !stationData) return null;
+      for (const field of fields) {
+        const value = stationData[field];
+        if (value !== null && value !== undefined && !isNaN(value)) {
+          return parseFloat(value);
+        }
+      }
+      return null;
+    };
+
+    const getStationTemperatureInfo = (stationName, stationData) => {
+      const value = getStationTemperatureValue(stationName, stationData);
+      if (value === null) return null;
+      const formatted = formatTemperatureValue(value);
+      const color = getTemperatureColor(value);
+      if (!formatted || !color) return null;
+      return { value, formatted, color };
+    };
+
+    // Функции для работы с боковой панелью
+    const showStationSidebar = (stationName, stationData) => {
+      const sidebar = document.getElementById('stationSidebar');
+      const sidebarTitle = document.getElementById('sidebar-station-title');
+      const sidebarUpdateTime = document.getElementById('sidebar-update-time');
+      const sidebarRecoveryBadge = document.getElementById('sidebar-recovery-badge');
+      const flowRateLabel = document.getElementById('sidebar-flow-rate-label');
+      const aerodyneItem = document.getElementById('sidebar-aerodyne-item');
+      const aerodyneValueElement = document.getElementById('sidebar-aerodyne-flow-rate');
+      
+      // Сохраняем текущую открытую станцию
+      currentOpenStation = stationName;
+      
+      // Находим полное имя станции
+      const station = stations.find(s => s.name === stationName);
+      const fullName = station ? station.fullName : stationName;
+      
+      sidebarTitle.textContent = fullName;
+      const sidebarTemperature = getStationTemperatureInfo(stationName, stationData);
+      const temperatureLine = document.getElementById('sidebar-temperature-line');
+      if (sidebarTemperature) {
+        let icon = '';
+        let textSuffix = '';
+        if (sidebarTemperature.value > 0) {
+          icon = '☀️';
+        } else if (sidebarTemperature.value < 0) {
+          icon = '❄️';
+        } else {
+          textSuffix = ` — ${zeroTemperatureEasterEgg}`;
+        }
+        temperatureLine.textContent = icon
+          ? `Air temperature: ${icon} ${sidebarTemperature.formatted}`
+          : `Air temperature: ${sidebarTemperature.formatted}${textSuffix}`;
+        temperatureLine.style.color = sidebarTemperature.color;
+        temperatureLine.style.display = 'block';
+      } else {
+        temperatureLine.style.display = 'none';
+      }
+      
+      // Обновляем Last HF/LF Data Time для всех станций
+      const stationTimesSection = document.getElementById('sidebar-times-list');
+      const hfStationTime = stationData?.timestamps?.last_hf_time 
+        ? formatTs(stationData.timestamps.last_hf_time) 
+        : 'N/A';
+      const lfStationTime = stationData?.timestamps?.last_lf_time 
+        ? formatTs(stationData.timestamps.last_lf_time) 
+        : 'N/A';
+      
+      document.getElementById('sidebar-hf-time').textContent = hfStationTime;
+      document.getElementById('sidebar-lf-time').textContent = lfStationTime;
+      stationTimesSection.style.display = 'grid';
+      
+      // Обновляем время последнего обновления (используем server_time - время запроса данных)
+      const updateTimestamp = stationData?.timestamps?.server_time 
+        ? formatTs(stationData.timestamps.server_time) 
+        : 'N/A';
+      sidebarUpdateTime.textContent = `Updated: ${updateTimestamp}`;
+      sidebarUpdateTime.style.display = 'block';
+
+      // Показываем "Average for 5 last minutes" если есть технические параметры
+      const sidebarAverageTime = document.getElementById('sidebar-average-time');
+      const hasTechnicalParams = stationData && (stationData.flow_rate_lpm !== undefined || stationData.flow_pressure !== undefined || 
+                          stationData.flow_drive !== undefined ||
+                          stationData.tin_avg !== undefined || stationData.tout_avg !== undefined ||
+                          stationData.avg_signal_strength !== undefined ||
+                          stationData.aerodyne_flow_rate !== undefined || stationData.picarro_flow_rate !== undefined);
+      if (hasTechnicalParams) {
+        sidebarAverageTime.textContent = 'Average for 5 last minutes';
+        sidebarAverageTime.style.display = 'block';
+      } else {
+        sidebarAverageTime.style.display = 'none';
+      }
+
+      const recoverySummary = formatRecoverySummary(stationData?.recovery);
+      if (recoverySummary) {
+        sidebarRecoveryBadge.innerHTML = recoverySummary;
+        sidebarRecoveryBadge.style.display = 'block';
+      } else {
+        sidebarRecoveryBadge.innerHTML = '';
+        sidebarRecoveryBadge.style.display = 'none';
+      }
+
+      // Обновляем подписи для Agali_II, Soontaga, PaloCC, AgaliCC, Jarvselja_Forest и Jarvselja_CC
+      if (stationName === 'Agali_II' || stationName === 'Soontaga' || stationName === 'PaloCC' || stationName === 'AgaliCC' || stationName === 'Jarvselja_Forest' || stationName === 'Jarvselja_CC') {
+        const flowRateLabel = document.getElementById('sidebar-flow-rate-label');
+        const flowDriveLabel = document.getElementById('sidebar-flow-drive-label');
+        const tinLabel = document.getElementById('sidebar-tin-label');
+        const toutLabel = document.getElementById('sidebar-tout-label');
+        const signalLabel = document.getElementById('sidebar-signal-label');
+        
+        flowRateLabel.textContent = 'Licor 7200 Flow Rate:';
+        flowDriveLabel.textContent = 'Licor 7200 Flow Drive:';
+        tinLabel.textContent = 'Licor 7200 Inlet Temperature:';
+        toutLabel.textContent = 'Licor 7200 Outlet Temperature:';
+        signalLabel.textContent = 'Licor 7200 Signal Strength:';
+        
+        flowRateLabel.style.cursor = '';
+        flowRateLabel.style.textDecoration = '';
+        flowRateLabel.style.color = '';
+        flowRateLabel.onclick = null;
+        signalLabel.style.cursor = '';
+        signalLabel.style.textDecoration = '';
+        signalLabel.style.color = '';
+        signalLabel.onclick = null;
+        flowDriveLabel.style.cursor = '';
+        flowDriveLabel.style.textDecoration = '';
+        flowDriveLabel.style.color = '';
+        flowDriveLabel.onclick = null;
+        tinLabel.style.cursor = '';
+        tinLabel.style.textDecoration = '';
+        tinLabel.style.color = '';
+        tinLabel.onclick = null;
+        toutLabel.style.cursor = '';
+        toutLabel.style.textDecoration = '';
+        toutLabel.style.color = '';
+        toutLabel.onclick = null;
+      } else {
+        document.getElementById('sidebar-flow-rate-label').textContent = 'Flow Rate:';
+        document.getElementById('sidebar-flow-drive-label').textContent = 'Flow Drive:';
+        document.getElementById('sidebar-tin-label').textContent = 'Licor 7200 Inlet Temperature:';
+        document.getElementById('sidebar-tout-label').textContent = 'Licor 7200 Outlet Temperature:';
+        document.getElementById('sidebar-signal-label').textContent = 'Signal Strength:';
+      }
+      
+      // Проверяем, есть ли параметры для этой станции
+      if (stationData && (stationData.flow_rate_lpm !== undefined || stationData.flow_pressure !== undefined || 
+                          stationData.flow_drive !== undefined ||
+                          stationData.tin_avg !== undefined || stationData.tout_avg !== undefined ||
+                          stationData.avg_signal_strength !== undefined ||
+                          stationData.aerodyne_flow_rate !== undefined || stationData.picarro_flow_rate !== undefined)) {
+        // Обновляем параметры
+        const flowRateElement = document.getElementById('sidebar-flow-rate');
+        const flowRateValue = stationData.flow_rate_lpm !== undefined && stationData.flow_rate_lpm !== null ? stationData.flow_rate_lpm : null;
+        
+        // Определяем, нужно ли добавлять единицы измерения для Licor 7200
+        const isLicor7200 = LICOR_STATIONS.has(stationName);
+        
+        // Flow Rate
+        flowRateElement.textContent = flowRateValue !== null ? (isLicor7200 ? `${flowRateValue} L/min` : `${flowRateValue} lpm`) : '-';
+        
+        // Применяем цветовое кодирование для Flow Rate
+        const licorFlowRateStatus = isLicor7200 ? getLicorFlowRateStatus(flowRateValue) : null;
+        applyStatusClass(flowRateElement, licorFlowRateStatus);
+        
+        // Signal Strength
+        const signalElement = document.getElementById('sidebar-signal');
+        const signalValue = stationData.avg_signal_strength !== undefined && stationData.avg_signal_strength !== null ? stationData.avg_signal_strength : null;
+        signalElement.textContent = 
+          signalValue !== null ? (isLicor7200 ? `${signalValue} %` : `${signalValue}`) : '-';
+        
+        // Применяем цветовое кодирование для Signal Strength (только для Licor 7200)
+        if (isLicor7200) {
+          const signalStatus = getLicorSignalStrengthStatus(signalValue);
+          applyStatusClass(signalElement, signalStatus);
+        } else {
+          applyStatusClass(signalElement, null);
+        }
+        
+        // Flow Drive (только для Licor 7200)
+        const flowDriveElement = document.getElementById('sidebar-flow-drive');
+        const flowDriveValue = stationData.flow_drive !== undefined && stationData.flow_drive !== null ? stationData.flow_drive : null;
+        flowDriveElement.textContent = 
+          flowDriveValue !== null ? (isLicor7200 ? `${flowDriveValue} %` : `${flowDriveValue}`) : '-';
+        if (isLicor7200) {
+          const flowDriveStatus = getLicorFlowDriveStatus(flowDriveValue);
+          applyStatusClass(flowDriveElement, flowDriveStatus);
+        } else {
+          applyStatusClass(flowDriveElement, null);
+        }
+        
+        // Tin Temperature (только для Licor 7200)
+        const tinElement = document.getElementById('sidebar-tin');
+        const tinValue = stationData.tin_avg !== undefined && stationData.tin_avg !== null ? stationData.tin_avg : null;
+        tinElement.textContent = 
+          tinValue !== null ? (isLicor7200 ? `${tinValue} °C` : `${tinValue}`) : '-';
+        
+        // Tout Temperature (только для Licor 7200)
+        const toutElement = document.getElementById('sidebar-tout');
+        const toutValue = stationData.tout_avg !== undefined && stationData.tout_avg !== null ? stationData.tout_avg : null;
+        toutElement.textContent = 
+          toutValue !== null ? (isLicor7200 ? `${toutValue} °C` : `${toutValue}`) : '-';
+        
+        // Применяем цветовое кодирование для температур на основе разницы
+        if (isLicor7200) {
+          const tempDiffStatus = getTemperatureDifferenceStatus(tinValue, toutValue);
+          applyStatusClass(tinElement, tempDiffStatus);
+          applyStatusClass(toutElement, tempDiffStatus);
+        } else {
+          applyStatusClass(tinElement, null);
+          applyStatusClass(toutElement, null);
+        }
+        
+        // Для Kauru показываем только Picarro Flow Rate, скрываем остальные параметры
+        if (stationName === 'Kauru') {
+          // Скрываем стандартные параметры
+          document.getElementById('sidebar-flow-rate-item').style.display = 'none';
+          document.getElementById('sidebar-flow-drive-item').style.display = 'none';
+          document.getElementById('sidebar-tin-item').style.display = 'none';
+          document.getElementById('sidebar-tout-item').style.display = 'none';
+          document.getElementById('sidebar-signal-item').style.display = 'none';
+          
+          // Показываем только Picarro Flow Rate
+          if (stationData.picarro_flow_rate !== undefined) {
+            const picarroValue = stationData.picarro_flow_rate !== null ? `${stationData.picarro_flow_rate} lpm` : '-';
+            aerodyneValueElement.textContent = picarroValue;
+            const picarroStatus = getPicarroFlowRateStatus(stationData.picarro_flow_rate);
+            applyStatusClass(aerodyneValueElement, picarroStatus);
+            const picarroLabel = document.getElementById('sidebar-aerodyne-label');
+            picarroLabel.textContent = 'Picarro Flow Rate:';
+            picarroLabel.style.cursor = '';
+            picarroLabel.style.textDecoration = '';
+            picarroLabel.style.color = '';
+            picarroLabel.onclick = null;
+            aerodyneItem.style.display = 'flex';
+          } else {
+            // Убираем стили кликабельности
+            const picarroLabel = document.getElementById('sidebar-aerodyne-label');
+            picarroLabel.style.cursor = '';
+            picarroLabel.style.textDecoration = '';
+            picarroLabel.style.color = '';
+            picarroLabel.onclick = null;
+            applyStatusClass(aerodyneValueElement, null);
+            aerodyneItem.style.display = 'none';
+          }
+        } else {
+          // Для остальных станций показываем стандартные параметры
+          document.getElementById('sidebar-flow-rate-item').style.display = 'flex';
+          // Flow Drive показываем для всех станций Licor 7200, включая Jarvselja_Forest
+          document.getElementById('sidebar-flow-drive-item').style.display = 'flex';
+          // Для Agali_II не показываем температурные параметры
+          if (stationName !== 'Agali_II') {
+            document.getElementById('sidebar-tin-item').style.display = 'flex';
+            document.getElementById('sidebar-tout-item').style.display = 'flex';
+          } else {
+            document.getElementById('sidebar-tin-item').style.display = 'none';
+            document.getElementById('sidebar-tout-item').style.display = 'none';
+          }
+          document.getElementById('sidebar-signal-item').style.display = 'flex';
+          
+          // Показываем Aerodyne Flow Rate только для Agali_II
+          if (stationName === 'Agali_II' && stationData.aerodyne_flow_rate !== undefined) {
+            const aerodyneValue = stationData.aerodyne_flow_rate !== null ? `${stationData.aerodyne_flow_rate} lpm` : '-';
+            aerodyneValueElement.textContent = aerodyneValue;
+            const aerodyneStatus = getAerodyneFlowRateStatus(stationData.aerodyne_flow_rate);
+            applyStatusClass(aerodyneValueElement, aerodyneStatus);
+            const aerodyneLabel = document.getElementById('sidebar-aerodyne-label');
+            aerodyneLabel.textContent = 'Aerodyne Flow Rate:';
+            aerodyneLabel.style.cursor = '';
+            aerodyneLabel.style.textDecoration = '';
+            aerodyneLabel.style.color = '';
+            aerodyneLabel.onclick = null;
+            aerodyneItem.style.display = 'flex';
+          } else {
+            // Убираем стили кликабельности для других станций
+            const aerodyneLabel = document.getElementById('sidebar-aerodyne-label');
+            aerodyneLabel.style.cursor = '';
+            aerodyneLabel.style.textDecoration = '';
+            aerodyneLabel.style.color = '';
+            aerodyneLabel.onclick = null;
+            applyStatusClass(aerodyneValueElement, null);
+            aerodyneItem.style.display = 'none';
+          }
+        }
+        document.getElementById('sidebar-params-list').style.display = 'grid';
+      } else {
+        // Если параметров нет, показываем сообщение
+        document.getElementById('sidebar-params-list').style.display = 'none';
+        aerodyneItem.style.display = 'none';
+      }
+      
+      // Показываем панель
+      sidebar.classList.add('visible');
+    };
+
+    // Открыть боковую панель из ссылки в popup (для мобильных)
+    const openStationSidebarFromPopup = (stationName) => {
+      const cachedData = stationDataCache[stationName];
+      if (cachedData) {
+        showStationSidebar(stationName, cachedData);
+      }
+    };
+    
+    // Сразу делаем функцию доступной в глобальной области видимости для обработчика onclick
+    window.openStationSidebarFromPopup = openStationSidebarFromPopup;
+
+    const closeSidebar = () => {
+      const sidebar = document.getElementById('stationSidebar');
+      sidebar.classList.remove('visible');
+      currentOpenStation = null; // Сбрасываем текущую открытую станцию
+    };
+    
+    // Сразу делаем функцию доступной в глобальной области видимости для обработчика onclick
+    window.closeSidebar = closeSidebar;
+
+    // Закрываем панель при клике вне её
     document.addEventListener('click', (e) => {
       const sidebar = document.getElementById('stationSidebar');
-      if (sidebar.classList.contains('visible') && 
-          !sidebar.contains(e.target) && 
-          !e.target.closest('.leaflet-popup') && 
-          !e.target.closest('.leaflet-marker-icon')) {
+      if (sidebar.classList.contains('visible') && !sidebar.contains(e.target) && 
+          !e.target.closest('.leaflet-popup') && !e.target.closest('.leaflet-marker-icon')) {
         closeSidebar();
       }
     });
 
-    updateMarkers();
+      // Инициализируем маркеры после загрузки станций
+      updateMarkers();
+    };
+
+    // Запускаем инициализацию при загрузке страницы
+    initializeApp().then(() => {
+      // Все функции уже доступны в window, так как были присвоены выше
+      
+      // Обработчик сообщений от родительского окна для фокусировки на определенной локации
+      window.addEventListener('message', function(event) {
+        // Принимаем сообщения от родительского окна (index.html)
+        if (event.data && event.data.type === 'focusOnLocation') {
+          const center = event.data.center;
+          const zoom = event.data.zoom || 9;
+          
+          // Фокусируем карту на указанной локации
+          if (map && center && Array.isArray(center) && center.length === 2) {
+            // Небольшая задержка, чтобы убедиться, что карта полностью загружена
+            setTimeout(function() {
+              map.setView(center, zoom, { animate: true, duration: 0.5 });
+            }, 100);
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>

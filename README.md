@@ -64,4 +64,4 @@ If you would like to join the EddyEye Suite project or have any questions, pleas
 
 ---
 
-EddyEye Suite. 2025. Developed by [Svyatoslav Rogozin](https://www.researchgate.net/profile/Svyatoslav-Rogozin?ev=hdr_xprf)
+EddyEye Suite. 2026. Developed by [Svyatoslav Rogozin](https://www.researchgate.net/profile/Svyatoslav-Rogozin?ev=hdr_xprf)
