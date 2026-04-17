@@ -12,7 +12,7 @@ The Suite is best experienced — not described. Open the interactive live demo 
 
 ### 👉 [**Launch the Live Demo**](https://svyatoslav-stack.github.io/EddyEye-Suite/) 👈
 
-> All four modules, working dashboards, and interactive examples — right in your browser. No install, no signup.
+> Try demo right in your browser. No install, no signup.
 
 ---
 
